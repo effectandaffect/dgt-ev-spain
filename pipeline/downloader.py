@@ -9,7 +9,7 @@ from pathlib import Path
 
 import requests
 
-from config import BASE_URL
+from config import BASE_URL, BASE_URL_MONTHLY
 
 HEADERS = {
     "User-Agent": (
@@ -53,6 +53,54 @@ def download_zip(d: date, cache_dir: Path | None = None) -> bytes | None:
     except requests.RequestException as e:
         print(f"  ⚠️  Error descargando {url}: {e}")
         return None
+
+
+def download_monthly_zip(year: int, month: int, cache_dir: Path | None = None) -> bytes | None:
+    """
+    Descarga el ZIP mensual consolidado de un mes concreto.
+    Solo disponible para años pasados (2025 y anteriores).
+    """
+    if cache_dir:
+        cache_path = cache_dir / f"export_mensual_mat_{year}{month:02d}.zip"
+        if cache_path.exists():
+            return cache_path.read_bytes()
+
+    url = BASE_URL_MONTHLY.format(year=year, month=month, yyyymm=f"{year}{month:02d}")
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=60)
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        data = resp.content
+        if cache_dir:
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            cache_path.write_bytes(data)
+        return data
+    except requests.RequestException as e:
+        print(f"  ⚠️  Error descargando {url}: {e}")
+        return None
+
+
+def download_year_monthly(
+    year: int,
+    cache_dir: Path | None = None,
+    delay: float = 2.0,
+) -> dict[int, bytes]:
+    """
+    Descarga los 12 archivos mensuales de un año completo.
+    Devuelve {month: bytes}.
+    """
+    results: dict[int, bytes] = {}
+    for month in range(1, 13):
+        print(f"  ⬇️  Descargando mensual {year}-{month:02d}...")
+        data = download_monthly_zip(year, month, cache_dir)
+        if data:
+            results[month] = data
+            print(f"     ✅ {len(data):,} bytes")
+        else:
+            print(f"     ⏭  No disponible")
+        time.sleep(delay)
+    return results
 
 
 def download_range(

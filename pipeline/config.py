@@ -59,5 +59,12 @@ BASE_URL = (
     "export_mat_{date}.zip"
 )
 
+# URL para ficheros mensuales consolidados (disponibles para años pasados)
+BASE_URL_MONTHLY = (
+    "https://www.dgt.es/microdatos/salida/"
+    "{year}/{month}/vehiculos/matriculaciones/"
+    "export_mensual_mat_{yyyymm}.zip"
+)
+
 # ── Directorio de salida de datos (relativo a la raíz del proyecto) ───────────
 DATA_OUTPUT_DIR = "web/public/data"

@@ -1,6 +1,1332 @@
 {
   "updated": "2026-03-01",
   "months": {
+    "2025-01": [
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 417
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin",
+        "count": 394
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 374
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 250
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 234
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 162
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 155
+      },
+      {
+        "brand": "Renault",
+        "model": "Scenic E-Tech Electr",
+        "count": 150
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 130
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 130
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-2008 Allure Eléctr",
+        "count": 109
+      },
+      {
+        "brand": "Mg",
+        "model": "Mg4 Electric",
+        "count": 108
+      },
+      {
+        "brand": "Toyota",
+        "model": "Proace City Electric",
+        "count": 87
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 87
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 83
+      },
+      {
+        "brand": "Lvneng",
+        "model": "Ncs S",
+        "count": 80
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 75
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Ë-C4 Eléctrico",
+        "count": 75
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4 Pro 210Kw",
+        "count": 72
+      },
+      {
+        "brand": "Silence",
+        "model": "S01",
+        "count": 72
+      }
+    ],
+    "2025-02": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 527
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 432
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 382
+      },
+      {
+        "brand": "Fiat",
+        "model": "500",
+        "count": 352
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 319
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin",
+        "count": 234
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 199
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 155
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 151
+      },
+      {
+        "brand": "Lvneng",
+        "model": "Lx08Max",
+        "count": 147
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 144
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 130
+      },
+      {
+        "brand": "Cupra",
+        "model": "Tavascan",
+        "count": 129
+      },
+      {
+        "brand": "Mini",
+        "model": "Aceman Se",
+        "count": 114
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 108
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 102
+      },
+      {
+        "brand": "Opel",
+        "model": "Mokka Gs Electric Be",
+        "count": 98
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-2008 Allure Eléctr",
+        "count": 90
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 85
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 83
+      }
+    ],
+    "2025-03": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 1389
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 696
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 589
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 444
+      },
+      {
+        "brand": "Cupra",
+        "model": "Tavascan",
+        "count": 260
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 227
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin",
+        "count": 211
+      },
+      {
+        "brand": "Renault",
+        "model": "Kangoo Van E-Tech El",
+        "count": 194
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 166
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 161
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 158
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 143
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-2008 Allure Eléctr",
+        "count": 131
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 122
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 117
+      },
+      {
+        "brand": "Opel",
+        "model": "Mokka Gs Electric Be",
+        "count": 116
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 104
+      },
+      {
+        "brand": "Nissan",
+        "model": "Nissan Ariya",
+        "count": 104
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 98
+      },
+      {
+        "brand": "Ford",
+        "model": "Explorer",
+        "count": 96
+      }
+    ],
+    "2025-04": [
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 519
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 515
+      },
+      {
+        "brand": "Rieju",
+        "model": "Nuuk",
+        "count": 400
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 334
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 323
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-2008 Allure Eléctr",
+        "count": 246
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 239
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 237
+      },
+      {
+        "brand": "Cupra",
+        "model": "Tavascan",
+        "count": 197
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 170
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 158
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 151
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin",
+        "count": 146
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 134
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 117
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 115
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 115
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 114
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 107
+      },
+      {
+        "brand": "Mg",
+        "model": "Mg4 Electric",
+        "count": 100
+      }
+    ],
+    "2025-05": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 536
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 532
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 512
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 429
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 364
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 301
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-2008 Allure Eléctr",
+        "count": 281
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 258
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 237
+      },
+      {
+        "brand": "Opel",
+        "model": "Frontera Gs Electric",
+        "count": 222
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 217
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 209
+      },
+      {
+        "brand": "Cupra",
+        "model": "Tavascan",
+        "count": 201
+      },
+      {
+        "brand": "Rieju",
+        "model": "Nuuk",
+        "count": 201
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 195
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 191
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 146
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 145
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 140
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 139
+      }
+    ],
+    "2025-06": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 1451
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1182
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 456
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 393
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 355
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 343
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 305
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 293
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 254
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 246
+      },
+      {
+        "brand": "Maxus",
+        "model": "Maxus E-Deliver 9",
+        "count": 214
+      },
+      {
+        "brand": "Silence",
+        "model": "S01",
+        "count": 201
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 197
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 196
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphinásurf",
+        "count": 186
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 179
+      },
+      {
+        "brand": "Maxus",
+        "model": "Maxus E-Deliver 3",
+        "count": 177
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 175
+      },
+      {
+        "brand": "Polestar",
+        "model": "Polestar 2",
+        "count": 164
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 155
+      }
+    ],
+    "2025-07": [
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 605
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 493
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 456
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 384
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 333
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 332
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 292
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 230
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 224
+      },
+      {
+        "brand": "Silence",
+        "model": "S01",
+        "count": 183
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 179
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 177
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 176
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 170
+      },
+      {
+        "brand": "Skoda",
+        "model": "Elroq 60",
+        "count": 159
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 157
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphinásurf",
+        "count": 147
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 141
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 126
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 125
+      }
+    ],
+    "2025-08": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 1148
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 476
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 421
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 358
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 320
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 308
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 289
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 188
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 174
+      },
+      {
+        "brand": "Silence",
+        "model": "S01",
+        "count": 156
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 133
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 122
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 116
+      },
+      {
+        "brand": "Omoda",
+        "model": "Omoda5 Ev",
+        "count": 111
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 110
+      },
+      {
+        "brand": "Skoda",
+        "model": "Elroq 85",
+        "count": 109
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 104
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 96
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 94
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 89
+      }
+    ],
+    "2025-09": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 1978
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1017
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 529
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 483
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 410
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 332
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 269
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 252
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 233
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 223
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 200
+      },
+      {
+        "brand": "Ford",
+        "model": "Capri",
+        "count": 164
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 153
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 125
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 123
+      },
+      {
+        "brand": "Skoda",
+        "model": "Elroq 85",
+        "count": 122
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 121
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 117
+      },
+      {
+        "brand": "Fiat",
+        "model": "Scudo",
+        "count": 111
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 107
+      }
+    ],
+    "2025-10": [
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 833
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 582
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 434
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 376
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 351
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 338
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 231
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 230
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 222
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 206
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4 Pro 210Kw",
+        "count": 193
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 179
+      },
+      {
+        "brand": "Silence",
+        "model": "S01",
+        "count": 174
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 157
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Cla 250+",
+        "count": 148
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 141
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 140
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 140
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 133
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 A",
+        "count": 132
+      }
+    ],
+    "2025-11": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 1264
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 684
+      },
+      {
+        "brand": "Henos",
+        "model": "Alpha",
+        "count": 547
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 469
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 351
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 269
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 265
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 253
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 251
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 216
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 175
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 170
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 169
+      },
+      {
+        "brand": "Opel",
+        "model": "Frontera Gs Electric",
+        "count": 162
+      },
+      {
+        "brand": "Mini",
+        "model": "Aceman Se",
+        "count": 150
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4 Pro 210Kw",
+        "count": 150
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 149
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 138
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Cla 250+",
+        "count": 131
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "T03",
+        "count": 131
+      }
+    ],
+    "2025-12": [
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 963
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 830
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 693
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 399
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 390
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 346
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 345
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 240
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 240
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 E",
+        "count": 233
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 209
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1 Edrive20",
+        "count": 206
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 204
+      },
+      {
+        "brand": "Opel",
+        "model": "Frontera Gs Electric",
+        "count": 187
+      },
+      {
+        "brand": "Citroen",
+        "model": "Nuevo Citroën Ë-C3 A",
+        "count": 185
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4 Pro 210Kw",
+        "count": 183
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "B10",
+        "count": 178
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Kona",
+        "count": 177
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix2 Edrive20",
+        "count": 174
+      },
+      {
+        "brand": "Mini",
+        "model": "Aceman Se",
+        "count": 160
+      }
+    ],
+    "2026-01": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 448
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 324
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin Surf",
+        "count": 289
+      },
+      {
+        "brand": "Kia",
+        "model": "Niro",
+        "count": 285
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 224
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 207
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 186
+      },
+      {
+        "brand": "Toyota",
+        "model": "Toyota Bz4X",
+        "count": 178
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Cla 250+",
+        "count": 162
+      },
+      {
+        "brand": "Opel",
+        "model": "Frontera Gs Electric",
+        "count": 139
+      },
+      {
+        "brand": "Renault",
+        "model": "Renault 5 E-Tech Ele",
+        "count": 135
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Seal",
+        "count": 135
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 126
+      },
+      {
+        "brand": "Xpeng",
+        "model": "G6",
+        "count": 104
+      },
+      {
+        "brand": "Leapmotor",
+        "model": "B10",
+        "count": 95
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 94
+      },
+      {
+        "brand": "Nissan",
+        "model": "Nissan Micra",
+        "count": 94
+      },
+      {
+        "brand": "Renault",
+        "model": "Kangoo Van E-Tech El",
+        "count": 90
+      },
+      {
+        "brand": "Toyota",
+        "model": "Proace City Electric",
+        "count": 88
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 85
+      }
+    ],
     "2026-02": [
       {
         "brand": "Tesla",
