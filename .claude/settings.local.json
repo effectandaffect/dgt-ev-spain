@@ -34,7 +34,24 @@
       "Bash(gh auth login --hostname github.com --git-protocol https --web)",
       "Bash(git init)",
       "Bash(git add .)",
-      "Bash(git commit -m \"feat: EVstats España - dashboard matriculaciones BEV con datos DGT:*)"
+      "Bash(git commit -m \"feat: EVstats España - dashboard matriculaciones BEV con datos DGT:*)",
+      "Bash(gh repo create dgt-ev-spain --public --description \"Dashboard de matriculaciones BEV en España con datos diarios de la DGT\" --push --source .)",
+      "Bash(gh auth refresh -s workflow)",
+      "Bash(gh auth refresh --hostname github.com --scopes workflow)",
+      "Bash(git push -u origin main)",
+      "Bash(gh auth status)",
+      "Bash(gh auth setup-git)",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain/pages --method POST --field source='{\"\"branch\"\":\"\"main\"\",\"\"path\"\":\"\"/\"\"}')",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain --method PATCH --field has_pages=true)",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain/pages --method POST --field build_type=workflow)",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain/pages --method PUT --field cname=014on.com)",
+      "Bash(gh workflow run daily-update.yml --repo effectandaffect/dgt-ev-spain)",
+      "Bash(gh run view 22548520208 --repo effectandaffect/dgt-ev-spain)",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain/pages --method PUT --field cname=\"\")",
+      "Bash(gh api repos/effectandaffect/dgt-ev-spain/pages)",
+      "Bash(git add -A)",
+      "Bash(git commit -m \"fix: quitar CNAME temporalmente hasta configurar DNS de 014on.com\")",
+      "Bash(git push)"
     ]
   }
 }
