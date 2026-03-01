@@ -30,6 +30,7 @@ DATA_DIR = ROOT / "web" / "public" / "data"
 def main():
     parser = argparse.ArgumentParser(description="Pipeline DGT Matriculaciones")
     parser.add_argument("--since",   help="Fecha inicio YYYY-MM-DD (reconstrucción)")
+    parser.add_argument("--until",   help="Fecha fin YYYY-MM-DD (opcional, por defecto hoy)")
     parser.add_argument("--date",    help="Día concreto YYYY-MM-DD")
     parser.add_argument("--explore", action="store_true", help="Muestra códigos únicos")
     parser.add_argument("--no-cache", action="store_true", help="No usar caché local")
@@ -58,16 +59,19 @@ def main():
         start = end = date.fromisoformat(args.date)
     elif args.since:
         start = date.fromisoformat(args.since)
-        end = today
+        end = date.fromisoformat(args.until) if args.until else today
     else:
         # Por defecto: hoy (o ayer si aún no publicado)
         start = end = today
 
     print(f"📅 Procesando {start} → {end}")
 
-    # ── Cargar datos existentes del año en curso (para no perder días previos)
+    # ── Cargar datos existentes (solo en modo actualización diaria, no en rebuild)
     store = DataStore()
-    _load_existing_data_into_store(store)
+    is_rebuild = bool(args.since)
+    if not is_rebuild:
+        # Actualización diaria: cargamos días previos del JSON para no perderlos
+        _load_existing_data_into_store(store)
 
     # ── Descargar y procesar ──────────────────────────────────────────────────
     downloads = download_range(start, end, cache_dir=cache)
@@ -107,8 +111,10 @@ def _load_existing_data_into_store(store: DataStore) -> None:
             payload = json.loads(bev_file.read_text())
             year = payload["year"]
             for entry in payload.get("daily", []):
-                d = datetime.date.fromisoformat(entry["date"])
                 store.bev_daily[year][entry["date"]] += entry["count"]
+                nd = entry.get("nd_count", 0)
+                if nd:
+                    store.bev_daily_nd[year][entry["date"]] += nd
         except Exception:
             pass  # Si falla, simplemente re-descargamos
 

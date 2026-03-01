@@ -8,7 +8,7 @@ import StatsCard from "./components/StatsCard";
 import YearComparisonChart from "./components/YearComparisonChart";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-interface DailyEntry  { date: string; count: number }
+interface DailyEntry  { date: string; count: number; nd_count?: number }
 interface MonthSummary { total: number }
 interface BrandEntry  { brand: string; model: string; count: number }
 interface MotorizEntry { type: string; code: string; count: number; pct: number }
@@ -27,20 +27,25 @@ export default function Home() {
   const [motoriz, setMotoriz] = useState<MotorizData | null>(null);
   const [meta, setMeta] = useState<MetaData | null>(null);
   const [loading, setLoading] = useState(true);
+  // Toggle: false = total (con flotas), true = solo particulares (ND)
+  const [soloParticulares, setSoloParticulares] = useState(false);
 
   useEffect(() => {
     const B = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+    const safe = (p: Promise<Response>) =>
+      p.then((r) => (r.ok ? r.json() : null)).catch(() => null);
+
     Promise.all([
-      fetch(`${B}/data/bev_daily_2025.json`).then((r) => r.json()),
-      fetch(`${B}/data/bev_daily_2026.json`).then((r) => r.json()),
-      fetch(`${B}/data/monthly_comparison.json`).then((r) => r.json()),
-      fetch(`${B}/data/brands_models.json`).then((r) => r.json()),
-      fetch(`${B}/data/motorization.json`).then((r) => r.json()),
-      fetch(`${B}/data/meta.json`).then((r) => r.json()),
+      safe(fetch(`${B}/data/bev_daily_2025.json`)),
+      safe(fetch(`${B}/data/bev_daily_2026.json`)),
+      safe(fetch(`${B}/data/monthly_comparison.json`)),
+      safe(fetch(`${B}/data/brands_models.json`)),
+      safe(fetch(`${B}/data/motorization.json`)),
+      safe(fetch(`${B}/data/meta.json`)),
     ])
       .then(([d25, d26, cmp, brd, mot, met]) => {
-        setBev2025((d25 as BevDailyData).daily);
-        setBev2026((d26 as BevDailyData).daily);
+        setBev2025((d25 as BevDailyData | null)?.daily ?? []);
+        setBev2026((d26 as BevDailyData | null)?.daily ?? []);
         setComparison(cmp);
         setBrands(brd);
         setMotoriz(mot);
@@ -97,20 +102,55 @@ export default function Home() {
             </h1>
             <p className="text-xs text-gray-400">Matriculaciones BEV · Datos DGT</p>
           </div>
-          {meta?.updated && (
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-xs text-gray-400">
-                Actualizado {new Date(meta.updated).toLocaleDateString("es-ES", {
-                  day: "numeric", month: "long", year: "numeric",
-                })}
-              </span>
+          <div className="flex items-center gap-3">
+            {/* Toggle particulares / total */}
+            <div className="flex items-center gap-1.5 bg-gray-100 rounded-full p-1">
+              <button
+                onClick={() => setSoloParticulares(false)}
+                title="Incluye ventas a empresas y flotas (renting, leasing)"
+                className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                  !soloParticulares
+                    ? "bg-white text-gray-800 shadow-sm"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Total
+              </button>
+              <button
+                onClick={() => setSoloParticulares(true)}
+                title="Solo ventas a particulares (excluye flotas)"
+                className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                  soloParticulares
+                    ? "bg-white text-gray-800 shadow-sm"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Particulares
+              </button>
             </div>
-          )}
+            {meta?.updated && (
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-xs text-gray-400">
+                  Actualizado {new Date(meta.updated).toLocaleDateString("es-ES", {
+                    day: "numeric", month: "long", year: "numeric",
+                  })}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+        {/* Toggle info banner */}
+        {soloParticulares && (
+          <div className="bg-blue-50 border border-blue-100 rounded-lg px-4 py-2 text-xs text-blue-700">
+            <strong>Modo particulares:</strong> Mostrando solo ventas a personas físicas (código ND).
+            Excluye ~42% de matriculaciones correspondientes a flotas, renting y empresas (código NX).
+          </div>
+        )}
+
         {/* KPI Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatsCard
@@ -121,8 +161,8 @@ export default function Home() {
           />
           <StatsCard
             title="BEV vendidos 2025"
-            value={total2025.toLocaleString("es-ES")}
-            sub="total año completo"
+            value={total2025 > 0 ? total2025.toLocaleString("es-ES") : "—"}
+            sub={total2025 > 0 ? "total año completo" : "datos no disponibles"}
           />
           <StatsCard
             title="Cuota BEV"
@@ -142,8 +182,15 @@ export default function Home() {
 
         {/* Row 1: Daily BEV + Year Comparison */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <DailyBEVChart data2025={bev2025} data2026={bev2026} currentYear={2026} />
-          {comparison && <YearComparisonChart years={comparison.years} />}
+          <DailyBEVChart
+            data2025={bev2025}
+            data2026={bev2026}
+            currentYear={2026}
+            soloParticulares={soloParticulares}
+          />
+          {comparison && (
+            <YearComparisonChart years={comparison.years} />
+          )}
         </div>
 
         {/* Row 2: Brands + Motorization */}

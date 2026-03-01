@@ -16,8 +16,10 @@ from parser import get_motorization, is_turismo, iter_records, parse_date
 
 class DataStore:
     def __init__(self):
-        # BEV diario: {year: {date_iso: count}}
+        # BEV diario total: {year: {date_iso: count}}
         self.bev_daily: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+        # BEV diario solo particulares (IND_NUEVO_USADO='ND'): {year: {date_iso: count}}
+        self.bev_daily_nd: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
         # Totales por motorización: {year: {month_str: {motorization: count}}}
         self.motorization: dict[int, dict[str, dict[str, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
@@ -41,6 +43,9 @@ class DataStore:
             date_iso = d.isoformat()
 
             motoriz = get_motorization(record)
+            # IND_NUEVO_USADO: 'ND' = venta a particular, 'NX' = flota/empresa
+            canal = record.get("IND_NUEVO_USADO", "").strip()
+            is_particular = (canal == "ND")
 
             # Acumular motorización total
             self.motorization[year][month][motoriz] += 1
@@ -48,6 +53,8 @@ class DataStore:
             # Acumular BEV diario y por marca/modelo
             if motoriz == "BEV":
                 self.bev_daily[year][date_iso] += 1
+                if is_particular:
+                    self.bev_daily_nd[year][date_iso] += 1
                 brand = record["MARCA"].title().strip()
                 model = record["MODELO"].title().strip()
                 self.brands[year][month][(brand, model)] += 1
@@ -71,11 +78,19 @@ def write_all(store: DataStore, out_dir: Path, updated: str) -> None:
 
 def _write_bev_daily(store: DataStore, out_dir: Path, updated: str) -> None:
     for year, daily in store.bev_daily.items():
+        nd_daily = store.bev_daily_nd.get(year, {})
         payload = {
             "year": year,
             "updated": updated,
             "daily": sorted(
-                [{"date": d, "count": c} for d, c in daily.items()],
+                [
+                    {
+                        "date": d,
+                        "count": c,
+                        "nd_count": nd_daily.get(d, 0),  # solo particulares (ND)
+                    }
+                    for d, c in daily.items()
+                ],
                 key=lambda x: x["date"],
             ),
         }

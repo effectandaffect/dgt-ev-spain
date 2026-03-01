@@ -1,5 +1,12 @@
 """
 Parser del fichero de ancho fijo MATRABA de la DGT.
+
+Códigos verificados con datos reales (feb 2026):
+  - Turismo (M1):   COD_TIPO_VEHICULO='02'  y/o  COD_CATEGORIA_VEH starts '1000'
+  - BEV:            TIPO_HIBRIDO='EV'  AND  CILINDRADA='0'
+  - PHEV:           TIPO_HIBRIDO='EV'  AND  CILINDRADA > 0
+  - HEV:            TIPO_HIBRIDO='HEV' AND  CILINDRADA > 0
+  - Gasolina/Diésel/Gas: clasificados por COD_CARROCERIA y CILINDRADA
 """
 from __future__ import annotations
 
@@ -9,7 +16,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Generator
 
-from config import FIELDS, TURISMO_COD_TIPOS, TURISMO_CATEGORIA_PREFIX
+from config import FIELDS
 
 
 # ── Lectura del fichero ───────────────────────────────────────────────────────
@@ -25,10 +32,8 @@ def iter_records(source: Path | bytes) -> Generator[dict, None, None]:
         zf = zipfile.ZipFile(source)
 
     with zf:
-        # El zip contiene un único fichero .txt
         name = zf.namelist()[0]
         with zf.open(name) as fh:
-            # Primera línea = cabecera informativa, la saltamos
             first = True
             for raw in fh:
                 line = raw.decode("iso-8859-1").rstrip("\r\n")
@@ -43,9 +48,8 @@ def iter_records(source: Path | bytes) -> Generator[dict, None, None]:
 
 
 def _parse_line(line: str) -> dict | None:
-    f = FIELDS
     try:
-        return {k: line[s:e].strip() for k, (s, e) in f.items()}
+        return {k: line[s:e].strip() for k, (s, e) in FIELDS.items()}
     except Exception:
         return None
 
@@ -53,65 +57,56 @@ def _parse_line(line: str) -> dict | None:
 # ── Filtros ───────────────────────────────────────────────────────────────────
 
 def is_turismo(r: dict) -> bool:
-    """Turismo = tipo 01 o categoría M1 (01xxx), solo vehículos nuevos."""
-    tipo = r["COD_TIPO_VEHICULO"]
-    cat  = r["COD_CATEGORIA_VEH"]
-    nuevo = r["IND_NUEVO_USADO"] in ("ND", "NX", "N")
-    is_car = tipo in TURISMO_COD_TIPOS or cat.startswith(TURISMO_CATEGORIA_PREFIX)
+    """
+    Turismo nuevo = COD_TIPO_VEHICULO '02' O categoría M1 (1000x).
+    VERIFICADO con datos reales: Tesla, BYD, Renault, VW usan cod_tipo='02'.
+    """
+    tipo  = r["COD_TIPO_VEHICULO"]
+    cat   = r["COD_CATEGORIA_VEH"]
+    nuevo = r["IND_NUEVO_USADO"] in ("ND", "NX", "N", "")
+    is_car = tipo == "02" or cat.startswith("1000")
     return is_car and nuevo
 
 
 # ── Clasificación de motorización ─────────────────────────────────────────────
 
+def _cil_zero(r: dict) -> bool:
+    """True si la cilindrada es 0 (eléctrico puro)."""
+    return r["CILINDRADA"].lstrip("0") == ""
+
+
 def get_motorization(r: dict) -> str:
-    """Devuelve la motorización del vehículo."""
-    carroceria  = r["COD_CARROCERIA"]
-    combustible = r["COD_COMBUSTIBLE"]
-    hibrido     = r["TIPO_HIBRIDO"]
-    cilindrada  = r["CILINDRADA"]
+    """
+    Clasifica la motorización basándose en los códigos reales DGT (verificados).
 
-    from config import (
-        BEV_TIPO_HIBRIDO, BEV_CARROCERIA, BEV_COMBUSTIBLE,
-        PHEV_TIPO_HIBRIDO, PHEV_COMBUSTIBLE,
-        HEV_TIPO_HIBRIDO,
-        DIESEL_CARROCERIA, DIESEL_COMBUSTIBLE,
-        GASOLINA_CARROCERIA, GASOLINA_COMBUSTIBLE,
-        GAS_COMBUSTIBLE,
-    )
+    Lógica probada con datos de feb 2026:
+      BEV  = TIPO_HIBRIDO='EV' + CILINDRADA=0  (Tesla, BYD BEV, Renault 5, KIA EV3...)
+      PHEV = TIPO_HIBRIDO='EV' + CILINDRADA>0  (VW T-ROC PHEV, Peugeot 2008 HYBRID...)
+      HEV  = TIPO_HIBRIDO='HEV'                (Renault Rafale, VW Tiguan MHEV...)
+      resto clasificado por COD_CARROCERIA
+    """
+    hibr  = r["TIPO_HIBRIDO"]
+    carr  = r["COD_CARROCERIA"]
 
-    # BEV: tipo_hibrido indica eléctrico, o carrocería/combustible eléctrico,
-    #       o cilindrada 0 con potencia (fallback)
-    if (hibrido in BEV_TIPO_HIBRIDO
-            or carroceria in BEV_CARROCERIA
-            or combustible in BEV_COMBUSTIBLE):
-        return "BEV"
+    if hibr == "EV":
+        return "BEV" if _cil_zero(r) else "PHEV"
 
-    # Fallback BEV: cilindrada vacía o 0 con código HEV vacío
-    cil = cilindrada.lstrip("0") or "0"
-    if cil == "0" and not hibrido:
-        potencia = r.get("POTENCIA_CV", "").strip()
-        if potencia and potencia.lstrip("0"):
-            return "BEV"
-
-    # PHEV (híbrido enchufable): HEV + código de combustible PHEV
-    if hibrido in PHEV_TIPO_HIBRIDO and combustible in PHEV_COMBUSTIBLE:
-        return "PHEV"
-
-    # HEV (híbrido no enchufable)
-    if hibrido in HEV_TIPO_HIBRIDO:
+    if hibr == "HEV":
         return "HEV"
 
-    # Diésel
-    if carroceria in DIESEL_CARROCERIA or combustible in DIESEL_COMBUSTIBLE:
+    # Sin marcador híbrido → clasificar por carrocería/combustible
+    # Códigos verificados: AC=diésel, AF=gasolina alt, AB=gasolina, AA=gasolina,
+    #                      BB=furgoneta/comercial, AD=diésel alt
+    if carr in ("AC", "AD"):
         return "Diésel"
-
-    # Gasolina
-    if carroceria in GASOLINA_CARROCERIA or combustible in GASOLINA_COMBUSTIBLE:
+    if carr in ("AF", "AA", "AB", "AH", "AG"):
         return "Gasolina"
-
-    # GLP / GNC
-    if combustible in GAS_COMBUSTIBLE:
+    if carr == "AE":
         return "Gas"
+
+    # Fallback: si cilindrada=0 sin marca híbrida → podría ser BEV legacy
+    if _cil_zero(r) and r.get("POTENCIA_CV", "").lstrip("0"):
+        return "BEV"
 
     return "Otros"
 
@@ -129,26 +124,19 @@ def parse_date(ddmmyyyy: str) -> date | None:
 # ── Utilidad: explorar códigos únicos ─────────────────────────────────────────
 
 def explore_codes(source: Path | bytes, max_records: int = 50_000) -> dict:
-    """
-    Devuelve los valores únicos de los campos de clasificación.
-    Útil para descubrir los códigos reales del primer fichero descargado.
-    """
+    """Muestra los combos de clasificación más frecuentes. Útil para verificar códigos."""
     from collections import Counter
     combos: Counter = Counter()
     n = 0
     for r in iter_records(source):
         if not is_turismo(r):
             continue
-        key = (
-            r["COD_CARROCERIA"],
-            r["COD_COMBUSTIBLE"],
-            r["TIPO_HIBRIDO"],
-        )
+        key = (r["COD_CARROCERIA"], r["COD_COMBUSTIBLE"], r["TIPO_HIBRIDO"], r["CILINDRADA"])
         combos[key] += 1
         n += 1
         if n >= max_records:
             break
     return {
         "total_turismos": n,
-        "combos_carroceria_combustible_hibrido": dict(combos.most_common(40)),
+        "combos": dict(combos.most_common(40)),
     }
