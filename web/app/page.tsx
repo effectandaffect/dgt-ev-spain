@@ -29,13 +29,14 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const B = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
     Promise.all([
-      fetch("/data/bev_daily_2025.json").then((r) => r.json()),
-      fetch("/data/bev_daily_2026.json").then((r) => r.json()),
-      fetch("/data/monthly_comparison.json").then((r) => r.json()),
-      fetch("/data/brands_models.json").then((r) => r.json()),
-      fetch("/data/motorization.json").then((r) => r.json()),
-      fetch("/data/meta.json").then((r) => r.json()),
+      fetch(`${B}/data/bev_daily_2025.json`).then((r) => r.json()),
+      fetch(`${B}/data/bev_daily_2026.json`).then((r) => r.json()),
+      fetch(`${B}/data/monthly_comparison.json`).then((r) => r.json()),
+      fetch(`${B}/data/brands_models.json`).then((r) => r.json()),
+      fetch(`${B}/data/motorization.json`).then((r) => r.json()),
+      fetch(`${B}/data/meta.json`).then((r) => r.json()),
     ])
       .then(([d25, d26, cmp, brd, mot, met]) => {
         setBev2025((d25 as BevDailyData).daily);
