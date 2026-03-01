@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.dgt_cache/
+pipeline/__pycache__/
+
+# Node
+web/node_modules/
+web/.next/
+web/out/
+
+# Misc
+.DS_Store
+.env
+*.log

@@ -1,0 +1,1433 @@
+{
+  "updated": "2026-03-01",
+  "months": {
+    "2025-01": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 710
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 359
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 234
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 190
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 180
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 177
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 134
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 133
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 132
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 130
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 109
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 101
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 101
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 101
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 90
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 80
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 66
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 62
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 57
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 36
+      }
+    ],
+    "2025-02": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 717
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 269
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 239
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 199
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 185
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 145
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 133
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 112
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 98
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 91
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 88
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 88
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 83
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 78
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 74
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 67
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 66
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 59
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 58
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 29
+      }
+    ],
+    "2025-03": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1059
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 491
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 337
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 309
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 294
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 229
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 199
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 178
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 172
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 171
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 157
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 155
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 146
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 134
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 131
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 125
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 100
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 91
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 74
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 48
+      }
+    ],
+    "2025-04": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 854
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 460
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 328
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 313
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 255
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 212
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 207
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 196
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 177
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 154
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 143
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 130
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 121
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 119
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 119
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 115
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 89
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 89
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 79
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 40
+      }
+    ],
+    "2025-05": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1037
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 489
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 471
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 330
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 318
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 290
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 240
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 200
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 195
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 185
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 179
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 160
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 160
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 159
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 143
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 142
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 101
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 100
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 96
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 44
+      }
+    ],
+    "2025-06": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1620
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 669
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 531
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 502
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 386
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 337
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 329
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 312
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 270
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 268
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 221
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 200
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 196
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 194
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 185
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 184
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 137
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 129
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 128
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 58
+      }
+    ],
+    "2025-07": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1353
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 517
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 402
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 361
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 313
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 276
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 258
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 223
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 213
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 205
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 181
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 172
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 167
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 165
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 160
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 150
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 124
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 113
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 107
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 55
+      }
+    ],
+    "2025-08": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 859
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 421
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 313
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 300
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 234
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 225
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 174
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 171
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 151
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 148
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 125
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 124
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 118
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 116
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 116
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 111
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 84
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 77
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 74
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 39
+      }
+    ],
+    "2025-09": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1624
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 687
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 676
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 497
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 472
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 410
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 394
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 341
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 304
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 278
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 234
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 232
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 204
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 201
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 185
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 184
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 166
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 158
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 149
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 78
+      }
+    ],
+    "2025-10": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1403
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 586
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 554
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 475
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 336
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 329
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 309
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 274
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 257
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 251
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 208
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 204
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 190
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 180
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 172
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 167
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 141
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 135
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 128
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 66
+      }
+    ],
+    "2025-11": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1052
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 610
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 459
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 423
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 339
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 294
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 282
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 252
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 230
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 222
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 195
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 176
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 154
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 151
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 148
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 129
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 110
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 106
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 98
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 56
+      }
+    ],
+    "2025-12": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 1691
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 710
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 620
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 475
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 388
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 379
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 316
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 293
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 283
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 273
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 237
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 218
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 218
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 206
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 203
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 179
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 146
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 142
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 131
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 70
+      }
+    ],
+    "2026-01": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 954
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 357
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 316
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 238
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 219
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 201
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 154
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 154
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 144
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 129
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 123
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 121
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 114
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 113
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 113
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 106
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 84
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 81
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 71
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 35
+      }
+    ],
+    "2026-02": [
+      {
+        "brand": "Tesla",
+        "model": "Model Y",
+        "count": 745
+      },
+      {
+        "brand": "Tesla",
+        "model": "Model 3",
+        "count": 300
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.4",
+        "count": 232
+      },
+      {
+        "brand": "Byd",
+        "model": "Atto 3",
+        "count": 213
+      },
+      {
+        "brand": "Byd",
+        "model": "Dolphin",
+        "count": 209
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev6",
+        "count": 188
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 6",
+        "count": 173
+      },
+      {
+        "brand": "Peugeot",
+        "model": "E-208",
+        "count": 129
+      },
+      {
+        "brand": "Bmw",
+        "model": "Ix1",
+        "count": 118
+      },
+      {
+        "brand": "Renault",
+        "model": "Megane E-Tech",
+        "count": 116
+      },
+      {
+        "brand": "Byd",
+        "model": "Seal",
+        "count": 104
+      },
+      {
+        "brand": "Mercedes",
+        "model": "Eqa",
+        "count": 102
+      },
+      {
+        "brand": "Audi",
+        "model": "Q4 E-Tron",
+        "count": 100
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 97
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 94
+      },
+      {
+        "brand": "Otros",
+        "model": "Otros",
+        "count": 86
+      },
+      {
+        "brand": "Skoda",
+        "model": "Enyaq",
+        "count": 78
+      },
+      {
+        "brand": "Cupra",
+        "model": "Born",
+        "count": 73
+      },
+      {
+        "brand": "Volkswagen",
+        "model": "Id.3",
+        "count": 61
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 33
+      }
+    ]
+  }
+}

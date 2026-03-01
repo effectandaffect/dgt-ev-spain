@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.dgt.es)",
+      "Bash(curl -L \"https://www.dgt.es/export/sites/web-DGT/.galleries/downloads/dgt-en-cifras/matraba/MATRICULACIONES_MATRABA.pdf\" -o /tmp/dgt_diseño_registro.pdf)",
+      "Bash(curl -L \"https://www.dgt.es/microdatos/salida/2026/2/vehiculos/matriculaciones/export_mat_20260212.zip\" -o /tmp/dgt_sample.zip)",
+      "Bash(unzip -p /tmp/dgt_sample.zip)",
+      "Bash(pdftotext /tmp/dgt_diseño_registro.pdf -)",
+      "Bash(unzip -l /tmp/dgt_sample.zip)",
+      "Bash(brew list)",
+      "Bash(unzip -p /tmp/dgt_sample.zip export_mat_20260212.txt)",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)",
+      "Bash(/opt/homebrew/bin/brew list)",
+      "Bash(/opt/homebrew/bin/brew install node)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(/opt/homebrew/bin/npm --version)",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm install)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm cache clean --force)",
+      "Bash(npm install next@latest)",
+      "Bash(git --version)",
+      "Bash(git config user.name)",
+      "Bash(git config user.email)",
+      "Bash(gh --version)",
+      "Bash(git config --global user.name)",
+      "Bash(git config --global user.email)",
+      "Bash(git config --global user.name \"Ramon Torrent\")",
+      "Bash(git config --global user.email \"ramontorrentg@gmail.com\")",
+      "Bash(brew install gh)",
+      "Bash(gh auth login --hostname github.com --git-protocol https --web)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"feat: EVstats España - dashboard matriculaciones BEV con datos DGT:*)"
+    ]
+  }
+}

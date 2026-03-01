@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Web (Next.js dev)",
+      "runtimeExecutable": "/bin/zsh",
+      "runtimeArgs": ["-c", "export PATH=/opt/homebrew/bin:$PATH && npm run dev"],
+      "port": 3000,
+      "cwd": "web"
+    },
+    {
+      "name": "Pipeline (genera datos muestra)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["pipeline/generate_sample.py"],
+      "port": 0
+    }
+  ]
+}
