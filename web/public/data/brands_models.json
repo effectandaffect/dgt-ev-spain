@@ -63,11 +63,6 @@
         "count": 108
       },
       {
-        "brand": "Toyota",
-        "model": "Proace City Electric",
-        "count": 87
-      },
-      {
         "brand": "Bmw",
         "model": "Ix1 Edrive20",
         "count": 87
@@ -76,11 +71,6 @@
         "brand": "Leapmotor",
         "model": "T03",
         "count": 83
-      },
-      {
-        "brand": "Lvneng",
-        "model": "Ncs S",
-        "count": 80
       },
       {
         "brand": "Byd",
@@ -98,9 +88,19 @@
         "count": 72
       },
       {
-        "brand": "Silence",
-        "model": "S01",
-        "count": 72
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 67
+      },
+      {
+        "brand": "Cupra",
+        "model": "Tavascan",
+        "count": 64
+      },
+      {
+        "brand": "Porsche",
+        "model": "Macan 4",
+        "count": 60
       }
     ],
     "2025-02": [
@@ -150,14 +150,9 @@
         "count": 151
       },
       {
-        "brand": "Lvneng",
-        "model": "Lx08Max",
-        "count": 147
-      },
-      {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 144
+        "count": 143
       },
       {
         "brand": "Hyundai",
@@ -203,13 +198,18 @@
         "brand": "Bmw",
         "model": "Ix2 Edrive20",
         "count": 83
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper E",
+        "count": 80
       }
     ],
     "2025-03": [
       {
         "brand": "Tesla",
         "model": "Model 3",
-        "count": 1389
+        "count": 1391
       },
       {
         "brand": "Renault",
@@ -240,11 +240,6 @@
         "brand": "Byd",
         "model": "Byd Dolphin",
         "count": 211
-      },
-      {
-        "brand": "Renault",
-        "model": "Kangoo Van E-Tech El",
-        "count": 194
       },
       {
         "brand": "Citroen",
@@ -305,6 +300,11 @@
         "brand": "Ford",
         "model": "Explorer",
         "count": 96
+      },
+      {
+        "brand": "Jeep",
+        "model": "Avenger",
+        "count": 90
       }
     ],
     "2025-04": [
@@ -317,11 +317,6 @@
         "brand": "Kia",
         "model": "Ev3",
         "count": 515
-      },
-      {
-        "brand": "Rieju",
-        "model": "Nuuk",
-        "count": 400
       },
       {
         "brand": "Tesla",
@@ -401,12 +396,17 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 107
+        "count": 103
       },
       {
         "brand": "Mg",
         "model": "Mg4 Electric",
         "count": 100
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 98
       }
     ],
     "2025-05": [
@@ -428,7 +428,7 @@
       {
         "brand": "Toyota",
         "model": "Toyota Bz4X",
-        "count": 429
+        "count": 430
       },
       {
         "brand": "Renault",
@@ -461,11 +461,6 @@
         "count": 222
       },
       {
-        "brand": "Dacia",
-        "model": "Spring",
-        "count": 217
-      },
-      {
         "brand": "Mercedes-Benz",
         "model": "Eqa 250+",
         "count": 209
@@ -476,9 +471,9 @@
         "count": 201
       },
       {
-        "brand": "Rieju",
-        "model": "Nuuk",
-        "count": 201
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 199
       },
       {
         "brand": "Hyundai",
@@ -508,6 +503,11 @@
       {
         "brand": "Bmw",
         "model": "Ix1 Edrive20",
+        "count": 139
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Dolphin",
         "count": 139
       }
     ],
@@ -563,16 +563,6 @@
         "count": 246
       },
       {
-        "brand": "Maxus",
-        "model": "Maxus E-Deliver 9",
-        "count": 214
-      },
-      {
-        "brand": "Silence",
-        "model": "S01",
-        "count": 201
-      },
-      {
         "brand": "Volvo",
         "model": "Ex30",
         "count": 197
@@ -593,14 +583,14 @@
         "count": 179
       },
       {
-        "brand": "Maxus",
-        "model": "Maxus E-Deliver 3",
-        "count": 177
-      },
-      {
         "brand": "Byd",
         "model": "Byd Dolphin Surf",
         "count": 175
+      },
+      {
+        "brand": "Renault",
+        "model": "Scenic E-Tech Electr",
+        "count": 166
       },
       {
         "brand": "Polestar",
@@ -610,7 +600,17 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 155
+        "count": 154
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Atto 2",
+        "count": 153
+      },
+      {
+        "brand": "Byd",
+        "model": "Byd Sealion 7",
+        "count": 153
       }
     ],
     "2025-07": [
@@ -660,11 +660,6 @@
         "count": 224
       },
       {
-        "brand": "Silence",
-        "model": "S01",
-        "count": 183
-      },
-      {
         "brand": "Byd",
         "model": "Atto 3",
         "count": 179
@@ -682,7 +677,7 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 170
+        "count": 168
       },
       {
         "brand": "Skoda",
@@ -713,6 +708,11 @@
         "brand": "Byd",
         "model": "Byd Sealion 7",
         "count": 125
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Ioniq 5",
+        "count": 123
       }
     ],
     "2025-08": [
@@ -760,11 +760,6 @@
         "brand": "Byd",
         "model": "Atto 3",
         "count": 174
-      },
-      {
-        "brand": "Silence",
-        "model": "S01",
-        "count": 156
       },
       {
         "brand": "Jeep",
@@ -815,6 +810,11 @@
         "brand": "Bmw",
         "model": "Ix2 Edrive20",
         "count": 89
+      },
+      {
+        "brand": "Mini",
+        "model": "Aceman Se",
+        "count": 78
       }
     ],
     "2025-09": [
@@ -889,14 +889,14 @@
         "count": 125
       },
       {
-        "brand": "Dacia",
-        "model": "Spring",
-        "count": 123
-      },
-      {
         "brand": "Skoda",
         "model": "Elroq 85",
         "count": 122
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 121
       },
       {
         "brand": "Bmw",
@@ -909,14 +909,14 @@
         "count": 117
       },
       {
-        "brand": "Fiat",
-        "model": "Scudo",
-        "count": 111
-      },
-      {
         "brand": "Bmw",
         "model": "Ix2 Edrive20",
         "count": 107
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Cla 250+",
+        "count": 94
       }
     ],
     "2025-10": [
@@ -968,7 +968,7 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 206
+        "count": 202
       },
       {
         "brand": "Volkswagen",
@@ -979,11 +979,6 @@
         "brand": "Hyundai",
         "model": "Kona",
         "count": 179
-      },
-      {
-        "brand": "Silence",
-        "model": "S01",
-        "count": 174
       },
       {
         "brand": "Byd",
@@ -1019,6 +1014,11 @@
         "brand": "Citroen",
         "model": "Nuevo Citroën Ë-C3 A",
         "count": 132
+      },
+      {
+        "brand": "Mazda",
+        "model": "Mazda 6E",
+        "count": 124
       }
     ],
     "2025-11": [
@@ -1031,11 +1031,6 @@
         "brand": "Byd",
         "model": "Byd Dolphin Surf",
         "count": 684
-      },
-      {
-        "brand": "Henos",
-        "model": "Alpha",
-        "count": 547
       },
       {
         "brand": "Kia",
@@ -1075,7 +1070,7 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 175
+        "count": 173
       },
       {
         "brand": "Byd",
@@ -1121,6 +1116,11 @@
         "brand": "Leapmotor",
         "model": "T03",
         "count": 131
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 128
       }
     ],
     "2025-12": [
@@ -1167,7 +1167,7 @@
       {
         "brand": "Dacia",
         "model": "Spring",
-        "count": 240
+        "count": 238
       },
       {
         "brand": "Citroen",
@@ -1312,19 +1312,19 @@
         "count": 94
       },
       {
-        "brand": "Renault",
-        "model": "Kangoo Van E-Tech El",
-        "count": 90
-      },
-      {
-        "brand": "Toyota",
-        "model": "Proace City Electric",
-        "count": 88
-      },
-      {
         "brand": "Volvo",
         "model": "Ex30",
         "count": 85
+      },
+      {
+        "brand": "Hyundai",
+        "model": "Inster",
+        "count": 83
+      },
+      {
+        "brand": "Mazda",
+        "model": "Mazda 6E",
+        "count": 83
       }
     ],
     "2026-02": [

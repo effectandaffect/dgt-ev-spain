@@ -4,203 +4,203 @@
   "daily": [
     {
       "date": "2026-01-02",
-      "count": 94,
-      "nd_count": 49
+      "count": 88,
+      "nd_count": 46
     },
     {
       "date": "2026-01-05",
-      "count": 190,
-      "nd_count": 112
+      "count": 165,
+      "nd_count": 103
     },
     {
       "date": "2026-01-07",
-      "count": 208,
-      "nd_count": 95
+      "count": 179,
+      "nd_count": 84
     },
     {
       "date": "2026-01-08",
-      "count": 188,
-      "nd_count": 100
+      "count": 161,
+      "nd_count": 84
     },
     {
       "date": "2026-01-09",
-      "count": 211,
-      "nd_count": 111
+      "count": 182,
+      "nd_count": 103
     },
     {
       "date": "2026-01-12",
-      "count": 190,
-      "nd_count": 100
+      "count": 173,
+      "nd_count": 89
     },
     {
       "date": "2026-01-13",
-      "count": 224,
-      "nd_count": 91
+      "count": 195,
+      "nd_count": 80
     },
     {
       "date": "2026-01-14",
-      "count": 249,
-      "nd_count": 96
+      "count": 212,
+      "nd_count": 85
     },
     {
       "date": "2026-01-15",
-      "count": 244,
-      "nd_count": 132
+      "count": 222,
+      "nd_count": 121
     },
     {
       "date": "2026-01-16",
-      "count": 264,
-      "nd_count": 147
+      "count": 231,
+      "nd_count": 137
     },
     {
       "date": "2026-01-19",
-      "count": 274,
-      "nd_count": 141
+      "count": 230,
+      "nd_count": 129
     },
     {
       "date": "2026-01-20",
-      "count": 270,
-      "nd_count": 130
+      "count": 235,
+      "nd_count": 119
     },
     {
       "date": "2026-01-21",
-      "count": 355,
-      "nd_count": 196
+      "count": 328,
+      "nd_count": 181
     },
     {
       "date": "2026-01-22",
-      "count": 347,
-      "nd_count": 196
+      "count": 317,
+      "nd_count": 181
     },
     {
       "date": "2026-01-23",
-      "count": 397,
-      "nd_count": 210
+      "count": 355,
+      "nd_count": 195
     },
     {
       "date": "2026-01-26",
-      "count": 409,
-      "nd_count": 243
+      "count": 354,
+      "nd_count": 211
     },
     {
       "date": "2026-01-27",
-      "count": 493,
-      "nd_count": 234
-    },
-    {
-      "date": "2026-01-28",
-      "count": 548,
-      "nd_count": 284
-    },
-    {
-      "date": "2026-01-29",
-      "count": 1024,
-      "nd_count": 371
-    },
-    {
-      "date": "2026-01-30",
-      "count": 1203,
-      "nd_count": 455
-    },
-    {
-      "date": "2026-02-02",
-      "count": 146,
-      "nd_count": 90
-    },
-    {
-      "date": "2026-02-03",
-      "count": 245,
-      "nd_count": 140
-    },
-    {
-      "date": "2026-02-04",
-      "count": 211,
-      "nd_count": 126
-    },
-    {
-      "date": "2026-02-05",
-      "count": 215,
-      "nd_count": 139
-    },
-    {
-      "date": "2026-02-06",
-      "count": 326,
+      "count": 442,
       "nd_count": 225
     },
     {
+      "date": "2026-01-28",
+      "count": 502,
+      "nd_count": 272
+    },
+    {
+      "date": "2026-01-29",
+      "count": 953,
+      "nd_count": 355
+    },
+    {
+      "date": "2026-01-30",
+      "count": 1118,
+      "nd_count": 430
+    },
+    {
+      "date": "2026-02-02",
+      "count": 115,
+      "nd_count": 74
+    },
+    {
+      "date": "2026-02-03",
+      "count": 211,
+      "nd_count": 125
+    },
+    {
+      "date": "2026-02-04",
+      "count": 179,
+      "nd_count": 107
+    },
+    {
+      "date": "2026-02-05",
+      "count": 174,
+      "nd_count": 117
+    },
+    {
+      "date": "2026-02-06",
+      "count": 296,
+      "nd_count": 208
+    },
+    {
       "date": "2026-02-09",
-      "count": 648,
-      "nd_count": 267
+      "count": 415,
+      "nd_count": 250
     },
     {
       "date": "2026-02-10",
-      "count": 446,
-      "nd_count": 238
+      "count": 399,
+      "nd_count": 212
     },
     {
       "date": "2026-02-11",
-      "count": 487,
-      "nd_count": 280
+      "count": 429,
+      "nd_count": 264
     },
     {
       "date": "2026-02-12",
-      "count": 446,
-      "nd_count": 247
+      "count": 365,
+      "nd_count": 228
     },
     {
       "date": "2026-02-13",
-      "count": 362,
-      "nd_count": 226
+      "count": 345,
+      "nd_count": 215
     },
     {
       "date": "2026-02-16",
-      "count": 363,
-      "nd_count": 222
+      "count": 333,
+      "nd_count": 209
     },
     {
       "date": "2026-02-17",
-      "count": 354,
-      "nd_count": 227
+      "count": 322,
+      "nd_count": 213
     },
     {
       "date": "2026-02-18",
-      "count": 482,
-      "nd_count": 260
+      "count": 381,
+      "nd_count": 247
     },
     {
       "date": "2026-02-19",
-      "count": 534,
-      "nd_count": 332
+      "count": 480,
+      "nd_count": 316
     },
     {
       "date": "2026-02-20",
-      "count": 532,
-      "nd_count": 327
+      "count": 485,
+      "nd_count": 313
     },
     {
       "date": "2026-02-23",
-      "count": 423,
-      "nd_count": 292
+      "count": 391,
+      "nd_count": 281
     },
     {
       "date": "2026-02-24",
-      "count": 699,
-      "nd_count": 418
+      "count": 633,
+      "nd_count": 404
     },
     {
       "date": "2026-02-25",
-      "count": 804,
-      "nd_count": 498
+      "count": 714,
+      "nd_count": 472
     },
     {
       "date": "2026-02-26",
-      "count": 1022,
-      "nd_count": 638
+      "count": 956,
+      "nd_count": 612
     },
     {
       "date": "2026-02-27",
-      "count": 1559,
-      "nd_count": 763
+      "count": 1475,
+      "nd_count": 737
     }
   ]
 }

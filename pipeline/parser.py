@@ -58,14 +58,14 @@ def _parse_line(line: str) -> dict | None:
 
 def is_turismo(r: dict) -> bool:
     """
-    Turismo nuevo = COD_TIPO_VEHICULO '02' O categoría M1 (1000x).
-    VERIFICADO con datos reales: Tesla, BYD, Renault, VW usan cod_tipo='02'.
+    Turismo nuevo = COD_CATEGORIA_VEH empieza por '10' (M1 y variantes: 1000B, 1041B, 1000H…).
+    VERIFICADO: esta categoría replica exactamente los datos de Luis Valdés (19/20 días Feb-2026
+    con diferencia de solo 1 vehículo en el día restante).
+    Excluye deliberadamente: N1 furgonetas (24xx), quadricycles (03xx, 04xx), minibuses (12xx).
     """
-    tipo  = r["COD_TIPO_VEHICULO"]
     cat   = r["COD_CATEGORIA_VEH"]
     nuevo = r["IND_NUEVO_USADO"] in ("ND", "NX", "N", "")
-    is_car = tipo == "02" or cat.startswith("1000")
-    return is_car and nuevo
+    return cat.startswith("10") and nuevo
 
 
 # ── Clasificación de motorización ─────────────────────────────────────────────
