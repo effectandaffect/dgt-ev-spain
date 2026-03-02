@@ -43,12 +43,20 @@ class DataStore:
         self.bev_daily: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
         # BEV diario solo particulares (IND_NUEVO_USADO='ND'): {year: {date_iso: count}}
         self.bev_daily_nd: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-        # Totales por motorización: {year: {month_str: {motorization: count}}}
+        # Totales por motorización total: {year: {month_str: {motorization: count}}}
         self.motorization: dict[int, dict[str, dict[str, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
-        # Marcas/modelos BEV: {year: {month_str: {(brand, model): count}}}
+        # Totales por motorización solo particulares: {year: {month_str: {motorization: count}}}
+        self.motorization_nd: dict[int, dict[str, dict[str, int]]] = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(int))
+        )
+        # Marcas/modelos BEV total: {year: {month_str: {(brand, model): count}}}
         self.brands: dict[int, dict[str, dict[tuple, int]]] = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(int))
+        )
+        # Marcas/modelos BEV solo particulares: {year: {month_str: {(brand, model): count}}}
+        self.brands_nd: dict[int, dict[str, dict[tuple, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
 
@@ -72,6 +80,9 @@ class DataStore:
 
             # Acumular motorización total
             self.motorization[year][month][motoriz] += 1
+            # Acumular motorización particulares
+            if is_particular:
+                self.motorization_nd[year][month][motoriz] += 1
 
             # Acumular BEV diario y por marca/modelo
             if motoriz == "BEV":
@@ -81,6 +92,8 @@ class DataStore:
                 brand = _norm_brand(record["MARCA"])
                 model = _norm_model(record["MARCA"], record["MODELO"])
                 self.brands[year][month][(brand, model)] += 1
+                if is_particular:
+                    self.brands_nd[year][month][(brand, model)] += 1
 
             count += 1
         return count
@@ -138,9 +151,16 @@ def _write_brands_models(store: DataStore, out_dir: Path, updated: str) -> None:
     for year, months in store.brands.items():
         for month, combos in months.items():
             key = f"{year}-{month}"
+            nd_combos = store.brands_nd.get(year, {}).get(month, {})
             top = sorted(combos.items(), key=lambda x: -x[1])[:30]
             months_data[key] = [
-                {"brand": b, "model": m, "count": c} for (b, m), c in top
+                {
+                    "brand": b,
+                    "model": m,
+                    "count": c,
+                    "nd_count": nd_combos.get((b, m), 0),
+                }
+                for (b, m), c in top
             ]
     _save(out_dir / "brands_models.json", {"updated": updated, "months": months_data})
 
@@ -156,23 +176,28 @@ def _write_motorization(store: DataStore, out_dir: Path, updated: str) -> None:
         "Otros": "Otros",
     }
     ORDER = ["Gasolina", "Diésel", "HEV", "PHEV", "BEV", "Gas", "Otros"]
-    months_data: dict[str, list] = {}
+    months_data: dict[str, dict] = {}
     for year, months in store.motorization.items():
         for month, mots in months.items():
             key = f"{year}-{month}"
             total = sum(mots.values())
             if total == 0:
                 continue
+            nd_mots = store.motorization_nd.get(year, {}).get(month, {})
+            nd_total = sum(nd_mots.values())
             row = []
             for code in ORDER:
                 count = mots.get(code, 0)
+                nd_count = nd_mots.get(code, 0)
                 row.append({
                     "type": LABELS.get(code, code),
                     "code": code,
                     "count": count,
                     "pct": round(count / total * 100, 1),
+                    "nd_count": nd_count,
+                    "nd_pct": round(nd_count / nd_total * 100, 1) if nd_total > 0 else 0.0,
                 })
-            months_data[key] = {"total": total, "types": row}
+            months_data[key] = {"total": total, "nd_total": nd_total, "types": row}
     _save(out_dir / "motorization.json", {"updated": updated, "months": months_data})
 
 

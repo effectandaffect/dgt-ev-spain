@@ -15,16 +15,15 @@ interface BrandEntry {
   brand: string;
   model: string;
   count: number;
+  nd_count: number;
 }
 
 interface Props {
   months: Record<string, BrandEntry[]>;
+  selectedYear: number;
+  selectedMonth: string; // "01".."12"
+  soloParticulares: boolean;
 }
-
-const MONTHS_LABELS: Record<string, string> = {
-  "01":"Enero","02":"Febrero","03":"Marzo","04":"Abril","05":"Mayo","06":"Junio",
-  "07":"Julio","08":"Agosto","09":"Septiembre","10":"Octubre","11":"Noviembre","12":"Diciembre",
-};
 
 const BAR_COLORS = [
   "#22c55e","#16a34a","#15803d","#166534","#4ade80",
@@ -35,55 +34,51 @@ const BAR_COLORS = [
 type ViewMode = "modelo" | "marca";
 type TimeMode = "mes" | "año";
 
-export default function BrandModelChart({ months }: Props) {
-  const availableMonths = Object.keys(months).sort().reverse();
-
-  const availableYears = useMemo(() => {
-    const years = new Set(Object.keys(months).map((k) => k.slice(0, 4)));
-    return Array.from(years).sort().reverse();
-  }, [months]);
-
-  const [selectedMonth, setSelectedMonth] = useState(availableMonths[0] ?? "");
-  const [selectedYear, setSelectedYear]   = useState(availableYears[0] ?? "");
+export default function BrandModelChart({ months, selectedYear, selectedMonth, soloParticulares }: Props) {
   const [view, setView] = useState<ViewMode>("modelo");
   const [time, setTime] = useState<TimeMode>("mes");
 
-  // ── Datos por mes ─────────────────────────────────────────────────────────
+  const monthKey = `${selectedYear}-${selectedMonth}`;
+
+  // ── Datos por mes ──────────────────────────────────────────────────────────
   const monthChartData = useMemo(() => {
-    const entries = months[selectedMonth] ?? [];
+    const entries = months[monthKey] ?? [];
+    const getCount = (e: BrandEntry) => soloParticulares ? e.nd_count : e.count;
+
     if (view === "modelo") {
-      return entries.slice(0, 30).map((e) => ({
-        name: `${e.brand} ${e.model}`.trim(),
-        count: e.count,
-      }));
+      return entries
+        .map((e) => ({ name: `${e.brand} ${e.model}`.trim(), count: getCount(e) }))
+        .filter((e) => e.count > 0)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 30);
     }
     const byBrand: Record<string, number> = {};
     for (const e of entries) {
-      byBrand[e.brand] = (byBrand[e.brand] ?? 0) + e.count;
+      byBrand[e.brand] = (byBrand[e.brand] ?? 0) + getCount(e);
     }
     return Object.entries(byBrand)
+      .filter(([, c]) => c > 0)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 30)
       .map(([name, count]) => ({ name, count }));
-  }, [months, selectedMonth, view]);
+  }, [months, monthKey, view, soloParticulares]);
 
   // ── Datos por año (agrega todos los meses) ────────────────────────────────
   const yearChartData = useMemo(() => {
     const aggregate: Record<string, number> = {};
     for (const [mk, entries] of Object.entries(months)) {
-      if (!mk.startsWith(selectedYear + "-")) continue;
+      if (!mk.startsWith(String(selectedYear) + "-")) continue;
       for (const e of entries) {
-        const key = view === "modelo"
-          ? `${e.brand} ${e.model}`.trim()
-          : e.brand;
-        aggregate[key] = (aggregate[key] ?? 0) + e.count;
+        const key = view === "modelo" ? `${e.brand} ${e.model}`.trim() : e.brand;
+        aggregate[key] = (aggregate[key] ?? 0) + (soloParticulares ? e.nd_count : e.count);
       }
     }
     return Object.entries(aggregate)
+      .filter(([, c]) => c > 0)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 30)
       .map(([name, count]) => ({ name, count }));
-  }, [months, selectedYear, view]);
+  }, [months, selectedYear, view, soloParticulares]);
 
   const chartData = time === "mes" ? monthChartData : yearChartData;
   const total = chartData.reduce((s, d) => s + d.count, 0);
@@ -103,7 +98,7 @@ export default function BrandModelChart({ months }: Props) {
             )}
           </h2>
           <p className="text-xs text-gray-400 mt-0.5">
-            {total.toLocaleString("es-ES")} matriculaciones BEV
+            {total.toLocaleString("es-ES")} matriculaciones{soloParticulares ? " particulares" : " BEV"}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -138,44 +133,6 @@ export default function BrandModelChart({ months }: Props) {
         </div>
       </div>
 
-      {/* Selectors */}
-      {time === "mes" ? (
-        <div className="flex flex-wrap gap-1 mb-4">
-          {availableMonths.slice(0, 12).map((mk) => {
-            const [y, m] = mk.split("-");
-            return (
-              <button
-                key={mk}
-                onClick={() => setSelectedMonth(mk)}
-                className={`px-2 py-0.5 text-xs rounded transition-colors ${
-                  mk === selectedMonth
-                    ? "bg-green-100 text-green-700 font-semibold"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                {MONTHS_LABELS[m] ?? m} {y.slice(2)}
-              </button>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="flex flex-wrap gap-1 mb-4">
-          {availableYears.map((y) => (
-            <button
-              key={y}
-              onClick={() => setSelectedYear(y)}
-              className={`px-3 py-0.5 text-xs rounded transition-colors font-medium ${
-                y === selectedYear
-                  ? "bg-green-100 text-green-700"
-                  : "text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              {y}
-            </button>
-          ))}
-        </div>
-      )}
-
       {chartData.length === 0 ? (
         <div className="h-72 flex items-center justify-center text-gray-400 text-sm">
           Sin datos para este período
@@ -202,8 +159,11 @@ export default function BrandModelChart({ months }: Props) {
               width={150}
             />
             <Tooltip
-              formatter={(v: number) => [v.toLocaleString("es-ES"), "Matriculaciones"]}
-              cursor={{ fill: "#f0fdf4" }}
+              formatter={(v: number) => [
+                v.toLocaleString("es-ES"),
+                soloParticulares ? "Particulares" : "Matriculaciones",
+              ]}
+              cursor={{ fill: soloParticulares ? "#eff6ff" : "#f0fdf4" }}
             />
             <Bar
               dataKey="count"

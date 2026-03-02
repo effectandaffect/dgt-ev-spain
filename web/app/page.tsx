@@ -10,14 +10,16 @@ import YearComparisonChart from "./components/YearComparisonChart";
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface DailyEntry  { date: string; count: number; nd_count?: number }
 interface MonthSummary { total: number }
-interface BrandEntry  { brand: string; model: string; count: number }
-interface MotorizEntry { type: string; code: string; count: number; pct: number }
+interface BrandEntry  { brand: string; model: string; count: number; nd_count: number }
+interface MotorizEntry { type: string; code: string; count: number; pct: number; nd_count: number; nd_pct: number }
 
 interface BevDailyData   { year: number; updated: string; daily: DailyEntry[] }
 interface ComparisonData { updated: string; years: Record<string, Record<string, MonthSummary>> }
 interface BrandsData     { updated: string; months: Record<string, BrandEntry[]> }
-interface MotorizData    { updated: string; months: Record<string, { total: number; types: MotorizEntry[] }> }
+interface MotorizData    { updated: string; months: Record<string, { total: number; nd_total?: number; types: MotorizEntry[] }> }
 interface MetaData       { updated: string; years: number[]; summary: Record<string, { total_bev: number }> }
+
+const MONTHS_SHORT = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 
 export default function Home() {
   const [bev2025, setBev2025] = useState<DailyEntry[]>([]);
@@ -27,8 +29,12 @@ export default function Home() {
   const [motoriz, setMotoriz] = useState<MotorizData | null>(null);
   const [meta, setMeta] = useState<MetaData | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // ── Controles globales ────────────────────────────────────────────────────
   // Toggle: false = total (con flotas), true = solo particulares (ND)
   const [soloParticulares, setSoloParticulares] = useState(false);
+  const [selectedYear, setSelectedYear] = useState(2026);
+  const [selectedMonth, setSelectedMonth] = useState("02");
 
   useEffect(() => {
     const B = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -50,10 +56,28 @@ export default function Home() {
         setBrands(brd);
         setMotoriz(mot);
         setMeta(met);
+        // Seleccionar el último mes disponible para 2026
+        if (cmp) {
+          const months2026 = Object.keys((cmp as ComparisonData).years["2026"] ?? {}).sort();
+          if (months2026.length > 0) setSelectedMonth(months2026[months2026.length - 1]);
+        }
       })
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
+
+  // Al cambiar de año, auto-seleccionar el último mes disponible de ese año
+  useEffect(() => {
+    if (!comparison) return;
+    const months = Object.keys(comparison.years[String(selectedYear)] ?? {}).sort();
+    if (months.length > 0) setSelectedMonth(months[months.length - 1]);
+  }, [selectedYear]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Meses disponibles para el año seleccionado
+  const availableMonths = useMemo(() => {
+    if (!comparison) return [];
+    return Object.keys(comparison.years[String(selectedYear)] ?? {}).sort();
+  }, [comparison, selectedYear]);
 
   // ── Totales desde meta (siempre total) ──────────────────────────────────────
   const total2026 = meta?.summary["2026"]?.total_bev ?? 0;
@@ -94,20 +118,22 @@ export default function Home() {
   const displayPrev  = soloParticulares ? sameperiodNd2025 : sameperiod2025;
   const ytdTrend = displayPrev > 0 ? ((display2026 - displayPrev) / displayPrev) * 100 : 0;
 
-  // ── Cuota BEV último mes (siempre total — motorization.json no tiene nd) ───
-  const latestMotMonth = motoriz
-    ? Object.keys(motoriz.months).sort().reverse()[0]
-    : undefined;
-  const latestMot = latestMotMonth ? motoriz!.months[latestMotMonth] : undefined;
-  const bevShare   = latestMot?.types.find((t) => t.code === "BEV")?.pct ?? 0;
+  // ── Cuota BEV del mes seleccionado ──────────────────────────────────────────
+  const motMonthKey = `${selectedYear}-${selectedMonth}`;
+  const selMot = motoriz?.months[motMonthKey];
+  const bevShare = soloParticulares
+    ? (selMot?.types.find((t) => t.code === "BEV")?.nd_pct ?? 0)
+    : (selMot?.types.find((t) => t.code === "BEV")?.pct ?? 0);
 
-  // ── Top marca último mes ────────────────────────────────────────────────────
-  const latestBrandMonth = brands
-    ? Object.keys(brands.months).sort().reverse()[0]
-    : undefined;
-  const topBrand = latestBrandMonth
-    ? brands!.months[latestBrandMonth][0]
-    : undefined;
+  // ── Top marca del mes seleccionado ──────────────────────────────────────────
+  const topBrand = useMemo(() => {
+    const entries = brands?.months[`${selectedYear}-${selectedMonth}`] ?? [];
+    if (entries.length === 0) return undefined;
+    if (soloParticulares) {
+      return [...entries].sort((a, b) => b.nd_count - a.nd_count)[0];
+    }
+    return entries[0]; // ya viene ordenado por count
+  }, [brands, selectedYear, selectedMonth, soloParticulares]);
 
   if (loading) {
     return (
@@ -131,53 +157,103 @@ export default function Home() {
             </h1>
             <p className="text-xs text-gray-400">Matriculaciones BEV · Datos DGT</p>
           </div>
-          <div className="flex items-center gap-3">
-            {/* Toggle particulares / total */}
-            <div className="flex items-center gap-1.5 bg-gray-100 rounded-full p-1">
-              <button
-                onClick={() => setSoloParticulares(false)}
-                title="Incluye ventas a empresas y flotas (renting, leasing)"
-                className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                  !soloParticulares
-                    ? "bg-white text-gray-800 shadow-sm"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                Total
-              </button>
-              <button
-                onClick={() => setSoloParticulares(true)}
-                title="Solo ventas a particulares (excluye flotas)"
-                className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
-                  soloParticulares
-                    ? "bg-white text-gray-800 shadow-sm"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                Particulares
-              </button>
+          {meta?.updated && (
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-xs text-gray-400">
+                Actualizado {new Date(meta.updated).toLocaleDateString("es-ES", {
+                  day: "numeric", month: "long", year: "numeric",
+                })}
+              </span>
             </div>
-            {meta?.updated && (
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-xs text-gray-400">
-                  Actualizado {new Date(meta.updated).toLocaleDateString("es-ES", {
-                    day: "numeric", month: "long", year: "numeric",
-                  })}
-                </span>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </header>
 
+      {/* Barra de controles global */}
+      <div className="bg-white border-b border-gray-100 sticky top-[73px] z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center gap-x-4 gap-y-2">
+          {/* Toggle Total / Particulares */}
+          <div className="flex items-center gap-1 bg-gray-100 rounded-full p-0.5">
+            <button
+              onClick={() => setSoloParticulares(false)}
+              title="Incluye ventas a empresas y flotas (renting, leasing)"
+              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                !soloParticulares
+                  ? "bg-white text-gray-800 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Total
+            </button>
+            <button
+              onClick={() => setSoloParticulares(true)}
+              title="Solo ventas a particulares (excluye flotas)"
+              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
+                soloParticulares
+                  ? "bg-white text-gray-800 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              Particulares
+            </button>
+          </div>
+
+          <div className="w-px h-4 bg-gray-200 hidden sm:block" />
+
+          {/* Año */}
+          <div className="flex items-center gap-1">
+            {(meta?.years ?? [2025, 2026]).map((y) => (
+              <button
+                key={y}
+                onClick={() => setSelectedYear(y)}
+                className={`px-3 py-1 text-xs rounded-full font-semibold transition-colors ${
+                  y === selectedYear
+                    ? "bg-gray-800 text-white"
+                    : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                }`}
+              >
+                {y}
+              </button>
+            ))}
+          </div>
+
+          <div className="w-px h-4 bg-gray-200 hidden sm:block" />
+
+          {/* Mes */}
+          <div className="flex flex-wrap items-center gap-1">
+            {MONTHS_SHORT.map((label, i) => {
+              const mm = String(i + 1).padStart(2, "0");
+              const hasData = availableMonths.includes(mm);
+              return (
+                <button
+                  key={mm}
+                  onClick={() => hasData && setSelectedMonth(mm)}
+                  disabled={!hasData}
+                  className={`px-2.5 py-0.5 text-xs rounded-full font-medium transition-colors ${
+                    mm === selectedMonth
+                      ? soloParticulares
+                        ? "bg-blue-500 text-white"
+                        : "bg-green-500 text-white"
+                      : hasData
+                      ? "text-gray-500 hover:bg-gray-100"
+                      : "text-gray-300 cursor-default"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
-        {/* Toggle info banner */}
+        {/* Banner modo particulares */}
         {soloParticulares && (
           <div className="bg-blue-50 border border-blue-100 rounded-lg px-4 py-2 text-xs text-blue-700">
             <strong>Modo particulares:</strong> Mostrando solo ventas directas a personas físicas (código ND).
             Excluye ~42% de matriculaciones correspondientes a flotas, renting y empresas (código NX).
-            La cuota de mercado y el ranking de marcas muestran datos totales.
           </div>
         )}
 
@@ -196,15 +272,17 @@ export default function Home() {
           />
           <StatsCard
             title="Cuota BEV"
-            value={`${bevShare.toFixed(1)}%`}
-            sub={latestMotMonth ? `del mercado ${latestMotMonth}` : "del mercado"}
+            value={selMot ? `${bevShare.toFixed(1)}%` : "—"}
+            sub={selMot
+              ? `del mercado ${MONTHS_SHORT[parseInt(selectedMonth, 10) - 1]} ${selectedYear}`
+              : "sin datos para este período"}
             color="blue"
           />
           <StatsCard
             title="Top marca BEV"
             value={topBrand?.brand ?? "—"}
             sub={topBrand
-              ? `${topBrand.model} · ${topBrand.count.toLocaleString("es-ES")} uds`
+              ? `${topBrand.model} · ${(soloParticulares ? topBrand.nd_count : topBrand.count).toLocaleString("es-ES")} uds`
               : ""}
             color="purple"
           />
@@ -215,7 +293,8 @@ export default function Home() {
           <DailyBEVChart
             data2025={bev2025}
             data2026={bev2026}
-            currentYear={2026}
+            selectedYear={selectedYear}
+            selectedMonth={selectedMonth}
             soloParticulares={soloParticulares}
           />
           {comparison && (
@@ -230,8 +309,22 @@ export default function Home() {
 
         {/* Row 2: Brands + Motorization */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {brands && <BrandModelChart months={brands.months} />}
-          {motoriz && <MotorizationChart months={motoriz.months} />}
+          {brands && (
+            <BrandModelChart
+              months={brands.months}
+              selectedYear={selectedYear}
+              selectedMonth={selectedMonth}
+              soloParticulares={soloParticulares}
+            />
+          )}
+          {motoriz && (
+            <MotorizationChart
+              months={motoriz.months}
+              selectedYear={selectedYear}
+              selectedMonth={selectedMonth}
+              soloParticulares={soloParticulares}
+            />
+          )}
         </div>
 
         {/* Footer */}
