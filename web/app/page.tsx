@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import BrandModelChart from "./components/BrandModelChart";
 import DailyBEVChart from "./components/DailyBEVChart";
 import MotorizationChart from "./components/MotorizationChart";
@@ -55,24 +55,53 @@ export default function Home() {
       .finally(() => setLoading(false));
   }, []);
 
-  // ── KPI cards ───────────────────────────────────────────────────────────────
+  // ── Totales desde meta (siempre total) ──────────────────────────────────────
   const total2026 = meta?.summary["2026"]?.total_bev ?? 0;
   const total2025 = meta?.summary["2025"]?.total_bev ?? 0;
-  // YTD: comparar mismo período (sólo los meses que ya existen en 2026)
+
+  // ── Totales ND (particulares) desde datos diarios ───────────────────────────
+  const totalNd2026 = useMemo(
+    () => bev2026.reduce((s, d) => s + (d.nd_count ?? 0), 0),
+    [bev2026],
+  );
+  const totalNd2025 = useMemo(
+    () => bev2025.reduce((s, d) => s + (d.nd_count ?? 0), 0),
+    [bev2025],
+  );
+
+  // ── YTD: same period comparison ─────────────────────────────────────────────
   const months2026 = comparison ? Object.keys(comparison.years["2026"] ?? {}) : [];
+
   const sameperiod2025 = comparison
     ? months2026.reduce((s, m) => s + (comparison.years["2025"]?.[m]?.total ?? 0), 0)
     : 0;
-  const ytdTrend = sameperiod2025 > 0 ? ((total2026 - sameperiod2025) / sameperiod2025) * 100 : 0;
 
-  // Cuota BEV último mes con datos
+  // nd aggregated by month for YTD nd comparison
+  const ndByMonth2025 = useMemo(() => {
+    const r: Record<string, number> = {};
+    for (const d of bev2025) {
+      const m = d.date.slice(5, 7);
+      r[m] = (r[m] ?? 0) + (d.nd_count ?? 0);
+    }
+    return r;
+  }, [bev2025]);
+
+  const sameperiodNd2025 = months2026.reduce((s, m) => s + (ndByMonth2025[m] ?? 0), 0);
+
+  // Choose values depending on toggle
+  const display2026  = soloParticulares ? totalNd2026  : total2026;
+  const display2025  = soloParticulares ? totalNd2025  : total2025;
+  const displayPrev  = soloParticulares ? sameperiodNd2025 : sameperiod2025;
+  const ytdTrend = displayPrev > 0 ? ((display2026 - displayPrev) / displayPrev) * 100 : 0;
+
+  // ── Cuota BEV último mes (siempre total — motorization.json no tiene nd) ───
   const latestMotMonth = motoriz
     ? Object.keys(motoriz.months).sort().reverse()[0]
     : undefined;
   const latestMot = latestMotMonth ? motoriz!.months[latestMotMonth] : undefined;
-  const bevShare  = latestMot?.types.find((t) => t.code === "BEV")?.pct ?? 0;
+  const bevShare   = latestMot?.types.find((t) => t.code === "BEV")?.pct ?? 0;
 
-  // Top marca último mes BEV
+  // ── Top marca último mes ────────────────────────────────────────────────────
   const latestBrandMonth = brands
     ? Object.keys(brands.months).sort().reverse()[0]
     : undefined;
@@ -146,36 +175,37 @@ export default function Home() {
         {/* Toggle info banner */}
         {soloParticulares && (
           <div className="bg-blue-50 border border-blue-100 rounded-lg px-4 py-2 text-xs text-blue-700">
-            <strong>Modo particulares:</strong> Mostrando solo ventas a personas físicas (código ND).
+            <strong>Modo particulares:</strong> Mostrando solo ventas directas a personas físicas (código ND).
             Excluye ~42% de matriculaciones correspondientes a flotas, renting y empresas (código NX).
+            La cuota de mercado y el ranking de marcas muestran datos totales.
           </div>
         )}
 
         {/* KPI Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatsCard
-            title="BEV vendidos 2026 (YTD)"
-            value={total2026.toLocaleString("es-ES")}
-            sub="turismos eléctricos puros"
+            title={soloParticulares ? "BEV particulares 2026 (YTD)" : "BEV vendidos 2026 (YTD)"}
+            value={display2026.toLocaleString("es-ES")}
+            sub={soloParticulares ? "ventas directas a particulares" : "turismos eléctricos puros"}
             trend={ytdTrend}
           />
           <StatsCard
-            title="BEV vendidos 2025"
-            value={total2025 > 0 ? total2025.toLocaleString("es-ES") : "—"}
-            sub={total2025 > 0 ? "total año completo" : "datos no disponibles"}
+            title={soloParticulares ? "BEV particulares 2025" : "BEV vendidos 2025"}
+            value={display2025 > 0 ? display2025.toLocaleString("es-ES") : "—"}
+            sub={display2025 > 0 ? "total año completo" : "datos no disponibles"}
           />
           <StatsCard
             title="Cuota BEV"
             value={`${bevShare.toFixed(1)}%`}
-            sub={latestMotMonth
-              ? `del mercado ${latestMotMonth}`
-              : "del mercado"}
+            sub={latestMotMonth ? `del mercado ${latestMotMonth}` : "del mercado"}
             color="blue"
           />
           <StatsCard
             title="Top marca BEV"
             value={topBrand?.brand ?? "—"}
-            sub={topBrand ? `${topBrand.model} · ${topBrand.count.toLocaleString("es-ES")} uds` : ""}
+            sub={topBrand
+              ? `${topBrand.model} · ${topBrand.count.toLocaleString("es-ES")} uds`
+              : ""}
             color="purple"
           />
         </div>
@@ -189,7 +219,12 @@ export default function Home() {
             soloParticulares={soloParticulares}
           />
           {comparison && (
-            <YearComparisonChart years={comparison.years} />
+            <YearComparisonChart
+              years={comparison.years}
+              data2025={bev2025}
+              data2026={bev2026}
+              soloParticulares={soloParticulares}
+            />
           )}
         </div>
 

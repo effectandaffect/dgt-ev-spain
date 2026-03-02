@@ -28,17 +28,20 @@ const MONTHS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov
 
 export default function DailyBEVChart({ data2025, data2026, currentYear, soloParticulares }: Props) {
   const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(() => {
+    const arr = currentYear === 2025 ? data2025 : data2026;
+    const ms = arr.map((d) => new Date(d.date).getMonth());
+    return ms.length ? Math.max(...ms) : new Date().getMonth();
+  });
 
   const rawData = year === 2025 ? data2025 : data2026;
 
-  // Último mes con datos para el año seleccionado
-  const defaultMonth = useMemo(() => {
-    const months = new Set(rawData.map((d) => new Date(d.date).getMonth()));
-    if (months.size === 0) return new Date().getMonth();
-    return Math.max(...Array.from(months));
-  }, [rawData]);
-
-  const [month, setMonth] = useState(defaultMonth);
+  const handleYearChange = (newYear: number) => {
+    const arr = newYear === 2025 ? data2025 : data2026;
+    const ms = arr.map((d) => new Date(d.date).getMonth());
+    setYear(newYear);
+    setMonth(ms.length ? Math.max(...ms) : new Date().getMonth());
+  };
 
   const chartData = useMemo(() => {
     return rawData
@@ -87,7 +90,7 @@ export default function DailyBEVChart({ data2025, data2026, currentYear, soloPar
           {availableYears.map((y) => (
             <button
               key={y}
-              onClick={() => setYear(y)}
+              onClick={() => handleYearChange(y)}
               className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${
                 y === year
                   ? soloParticulares
@@ -130,7 +133,12 @@ export default function DailyBEVChart({ data2025, data2026, currentYear, soloPar
           <BarChart data={chartData} margin={{ top: 4, right: 8, left: -10, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
             <XAxis dataKey="day" tick={{ fontSize: 11 }} tickLine={false} />
-            <YAxis tick={{ fontSize: 11 }} tickLine={false} axisLine={false} />
+            <YAxis
+              tick={{ fontSize: 11 }}
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(v: number) => v >= 1000 ? v.toLocaleString("es-ES") : String(v)}
+            />
             <Tooltip
               formatter={(v: number, _name: string, props) => {
                 const item = props.payload;

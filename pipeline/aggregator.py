@@ -12,6 +12,29 @@ from typing import Iterable
 from parser import get_motorization, is_turismo, iter_records, parse_date
 
 
+# ── Normalización de nombres de marcas/modelos ────────────────────────────────
+
+_BRAND_MAP: dict[str, str] = {
+    "BYD": "BYD", "BMW": "BMW", "MG": "MG", "SEAT": "SEAT",
+    "KIA": "Kia", "VW": "Volkswagen", "VOLKSWAGEN": "Volkswagen",
+    "MINI": "Mini", "MERCEDES-BENZ": "Mercedes-Benz",
+}
+
+def _norm_brand(raw: str) -> str:
+    s = raw.strip()
+    return _BRAND_MAP.get(s.upper(), s.title())
+
+def _norm_model(brand_raw: str, model_raw: str) -> str:
+    """Elimina prefijo de marca del modelo si está repetido (ej: 'BYD BYD DOLPHIN SURF')."""
+    b = brand_raw.strip().upper()
+    m = model_raw.strip()
+    if m.upper().startswith(b + " "):
+        m = m[len(b) + 1:]
+    elif m.upper() == b:
+        m = ""
+    return m.title().strip()
+
+
 # ── Estructuras de datos ──────────────────────────────────────────────────────
 
 class DataStore:
@@ -55,8 +78,8 @@ class DataStore:
                 self.bev_daily[year][date_iso] += 1
                 if is_particular:
                     self.bev_daily_nd[year][date_iso] += 1
-                brand = record["MARCA"].title().strip()
-                model = record["MODELO"].title().strip()
+                brand = _norm_brand(record["MARCA"])
+                model = _norm_model(record["MARCA"], record["MODELO"])
                 self.brands[year][month][(brand, model)] += 1
 
             count += 1
@@ -115,7 +138,7 @@ def _write_brands_models(store: DataStore, out_dir: Path, updated: str) -> None:
     for year, months in store.brands.items():
         for month, combos in months.items():
             key = f"{year}-{month}"
-            top = sorted(combos.items(), key=lambda x: -x[1])[:20]
+            top = sorted(combos.items(), key=lambda x: -x[1])[:30]
             months_data[key] = [
                 {"brand": b, "model": m, "count": c} for (b, m), c in top
             ]

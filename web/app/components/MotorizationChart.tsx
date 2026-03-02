@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useState } from "react";
 
 interface MotorizEntry {
   type: string;
@@ -21,7 +20,7 @@ interface Props {
 
 const COLORS: Record<string, string> = {
   BEV:      "#22c55e",
-  PHEV:     "#86efac",
+  PHEV:     "#4ade80",
   HEV:      "#fbbf24",
   Gasolina: "#60a5fa",
   "Diésel": "#94a3b8",
@@ -39,28 +38,17 @@ export default function MotorizationChart({ months }: Props) {
   const [selectedMonth, setSelectedMonth] = useState(availableMonths[0] ?? "");
 
   const monthData = months[selectedMonth];
-  const chartData = monthData?.types ?? [];
+  // Sort by count descending
+  const sorted = [...(monthData?.types ?? [])].sort((a, b) => b.count - a.count);
+  const maxCount = sorted[0]?.count ?? 1;
 
-  const bevEntry = chartData.find((d) => d.code === "BEV");
-  const phevEntry = chartData.find((d) => d.code === "PHEV");
+  const bevEntry  = sorted.find((d) => d.code === "BEV");
+  const phevEntry = sorted.find((d) => d.code === "PHEV");
   const electrified = ((bevEntry?.pct ?? 0) + (phevEntry?.pct ?? 0)).toFixed(1);
-
-  const CustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, pct, code }: any) => {
-    if (pct < 3) return null;
-    const RADIAN = Math.PI / 180;
-    const r = innerRadius + (outerRadius - innerRadius) * 0.6;
-    const x = cx + r * Math.cos(-midAngle * RADIAN);
-    const y = cy + r * Math.sin(-midAngle * RADIAN);
-    return (
-      <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central"
-        fontSize={11} fontWeight="600">
-        {pct.toFixed(1)}%
-      </text>
-    );
-  };
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3 mb-4">
         <div>
           <h2 className="text-base font-semibold text-gray-800">Cuota por motorización</h2>
@@ -69,14 +57,14 @@ export default function MotorizationChart({ months }: Props) {
           </p>
         </div>
         {bevEntry && (
-          <div className="bg-green-50 text-green-700 text-sm font-semibold px-3 py-1 rounded-full">
+          <div className="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
             BEV {bevEntry.pct.toFixed(1)}% · Electrificado {electrified}%
           </div>
         )}
       </div>
 
       {/* Month selector */}
-      <div className="flex flex-wrap gap-1 mb-3">
+      <div className="flex flex-wrap gap-1 mb-5">
         {availableMonths.slice(0, 12).map((mk) => {
           const [y, m] = mk.split("-");
           return (
@@ -95,55 +83,41 @@ export default function MotorizationChart({ months }: Props) {
         })}
       </div>
 
-      <div className="flex gap-6 items-center">
-        <ResponsiveContainer width={200} height={200}>
-          <PieChart>
-            <Pie
-              data={chartData}
-              dataKey="pct"
-              nameKey="type"
-              cx="50%"
-              cy="50%"
-              innerRadius={52}
-              outerRadius={90}
-              paddingAngle={2}
-              labelLine={false}
-              label={CustomLabel}
-            >
-              {chartData.map((entry) => (
-                <Cell key={entry.code} fill={COLORS[entry.code] ?? "#e2e8f0"} />
-              ))}
-            </Pie>
-            <Tooltip
-              formatter={(v: number, name: string) => [`${v.toFixed(1)}%`, name]}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-
-        {/* Legend table */}
-        <div className="flex-1 min-w-0">
-          <table className="w-full text-xs">
-            <tbody>
-              {chartData.map((entry) => (
-                <tr key={entry.code} className="border-b border-gray-50 last:border-0">
-                  <td className="py-1.5 pr-2 flex items-center gap-2">
-                    <span
-                      className="inline-block w-3 h-3 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: COLORS[entry.code] ?? "#e2e8f0" }}
-                    />
-                    <span className="text-gray-700 truncate">{entry.type}</span>
-                  </td>
-                  <td className="py-1.5 pr-3 text-right font-medium text-gray-800">
-                    {entry.count.toLocaleString("es-ES")}
-                  </td>
-                  <td className="py-1.5 text-right font-semibold text-gray-500 w-14">
-                    {entry.pct.toFixed(1)}%
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      {/* Bar chart */}
+      <div className="space-y-2.5">
+        {sorted.map((entry) => {
+          const barPct = (entry.count / maxCount) * 100;
+          const color = COLORS[entry.code] ?? "#e2e8f0";
+          return (
+            <div key={entry.code} className="flex items-center gap-2.5">
+              {/* Label */}
+              <div className="w-32 shrink-0 flex items-center gap-1.5">
+                <span
+                  className="w-2.5 h-2.5 rounded-sm shrink-0"
+                  style={{ backgroundColor: color }}
+                />
+                <span className="text-xs text-gray-700 truncate leading-tight">
+                  {entry.type}
+                </span>
+              </div>
+              {/* Bar */}
+              <div className="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+                <div
+                  className="h-5 rounded-full transition-all duration-300"
+                  style={{ width: `${barPct}%`, backgroundColor: color, opacity: 0.85 }}
+                />
+              </div>
+              {/* Count */}
+              <div className="w-20 shrink-0 text-right text-xs font-semibold text-gray-800 tabular-nums">
+                {entry.count.toLocaleString("es-ES")}
+              </div>
+              {/* Pct */}
+              <div className="w-10 shrink-0 text-right text-xs text-gray-400 tabular-nums">
+                {entry.pct.toFixed(1)}%
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
