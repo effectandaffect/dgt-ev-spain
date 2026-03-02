@@ -1,6 +1,10 @@
 name: Daily DGT Data Update
 
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "web/public/data/**"  # evitar loop: el bot también hace push de JSONs
   schedule:
     # La DGT publica tarde. Ejecutamos a las 21:00 UTC (23:00 CEST / 22:00 CET)
     - cron: "0 21 * * 1-5"
