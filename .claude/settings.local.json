@@ -82,7 +82,12 @@
       "Bash(/opt/homebrew/bin/gh run watch 22589742849 --repo effectandaffect/dgt-ev-spain --exit-status)",
       "Bash(/opt/homebrew/bin/node /opt/homebrew/bin/npm run build)",
       "Bash(/opt/homebrew/bin/npx --version)",
-      "Bash(node /opt/homebrew/bin/npm run build)"
+      "Bash(node /opt/homebrew/bin/npm run build)",
+      "Bash(gh run list --repo effectandaffect/dgt-ev-spain --limit 5)",
+      "Bash(gh run list --repo effectandaffect/dgt-ev-spain --limit 10 --workflow \"*.yml\")",
+      "Bash(git add /Users/ramontorrent/Cloud-Drive/DGT/.github/workflows/daily-update.yml)",
+      "Bash(git add .github/workflows/daily-update.yml)",
+      "Bash(gh run watch 22590740355 --repo effectandaffect/dgt-ev-spain)"
     ]
   }
 }

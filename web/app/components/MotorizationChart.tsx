@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo, useState } from "react";
+
 interface MotorizEntry {
   type: string;
   code: string;
@@ -22,6 +24,8 @@ interface Props {
   soloParticulares: boolean;
 }
 
+type TimeMode = "mes" | "año";
+
 const COLORS: Record<string, string> = {
   BEV:      "#22c55e",
   PHEV:     "#4ade80",
@@ -33,11 +37,48 @@ const COLORS: Record<string, string> = {
 };
 
 export default function MotorizationChart({ months, selectedYear, selectedMonth, soloParticulares }: Props) {
+  const [time, setTime] = useState<TimeMode>("mes");
+
   const monthKey = `${selectedYear}-${selectedMonth}`;
+
+  // ── Vista mes ──────────────────────────────────────────────────────────────
   const monthData = months[monthKey];
 
-  // Sort by count descending (use nd values when soloParticulares)
-  const sorted = [...(monthData?.types ?? [])].sort((a, b) =>
+  // ── Vista año: agrega todos los meses del año seleccionado ─────────────────
+  const yearData = useMemo((): MonthData | undefined => {
+    let total = 0;
+    let nd_total = 0;
+    const agg: Record<string, { type: string; count: number; nd_count: number }> = {};
+
+    for (const [mk, data] of Object.entries(months)) {
+      if (!mk.startsWith(String(selectedYear) + "-")) continue;
+      total += data.total;
+      nd_total += data.nd_total ?? 0;
+      for (const t of data.types) {
+        if (!agg[t.code]) agg[t.code] = { type: t.type, count: 0, nd_count: 0 };
+        agg[t.code].count += t.count;
+        agg[t.code].nd_count += t.nd_count;
+      }
+    }
+
+    if (total === 0) return undefined;
+
+    const types: MotorizEntry[] = Object.entries(agg).map(([code, d]) => ({
+      code,
+      type: d.type,
+      count: d.count,
+      pct: Math.round((d.count / total) * 1000) / 10,
+      nd_count: d.nd_count,
+      nd_pct: nd_total > 0 ? Math.round((d.nd_count / nd_total) * 1000) / 10 : 0,
+    }));
+
+    return { total, nd_total, types };
+  }, [months, selectedYear]);
+
+  const activeData = time === "mes" ? monthData : yearData;
+
+  // Ordenar por count descendente según modo
+  const sorted = [...(activeData?.types ?? [])].sort((a, b) =>
     soloParticulares ? b.nd_count - a.nd_count : b.count - a.count
   );
   const maxCount = sorted[0]
@@ -51,8 +92,8 @@ export default function MotorizationChart({ months, selectedYear, selectedMonth,
   const electrified = (bevPct + phevPct).toFixed(1);
 
   const displayTotal = soloParticulares
-    ? (monthData?.nd_total ?? 0)
-    : (monthData?.total ?? 0);
+    ? (activeData?.nd_total ?? 0)
+    : (activeData?.total ?? 0);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
@@ -61,16 +102,33 @@ export default function MotorizationChart({ months, selectedYear, selectedMonth,
         <div>
           <h2 className="text-base font-semibold text-gray-800">Cuota por motorización</h2>
           <p className="text-xs text-gray-400 mt-0.5">
-            {monthData
-              ? `${displayTotal.toLocaleString("es-ES")} turismos nuevos${soloParticulares ? " (particulares)" : ""}`
+            {activeData
+              ? `${displayTotal.toLocaleString("es-ES")} turismos${soloParticulares ? " particulares" : ""}`
               : "Sin datos para este período"}
+            {time === "año" && <span className="ml-1">· año completo {selectedYear}</span>}
           </p>
         </div>
-        {bevEntry && displayTotal > 0 && (
-          <div className="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-            BEV {bevPct.toFixed(1)}% · Electrificado {electrified}%
+        <div className="flex items-center gap-2">
+          {bevEntry && displayTotal > 0 && (
+            <div className="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+              BEV {bevPct.toFixed(1)}% · Electrificado {electrified}%
+            </div>
+          )}
+          {/* Mes / Año toggle */}
+          <div className="flex bg-gray-100 rounded-full p-0.5">
+            {(["mes", "año"] as TimeMode[]).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTime(t)}
+                className={`px-2.5 py-1 text-xs rounded-full font-medium transition-colors capitalize ${
+                  t === time ? "bg-white text-gray-800 shadow-sm" : "text-gray-500"
+                }`}
+              >
+                {t}
+              </button>
+            ))}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Bar chart */}
@@ -89,13 +147,8 @@ export default function MotorizationChart({ months, selectedYear, selectedMonth,
               <div key={entry.code} className="flex items-center gap-2.5">
                 {/* Label */}
                 <div className="w-32 shrink-0 flex items-center gap-1.5">
-                  <span
-                    className="w-2.5 h-2.5 rounded-sm shrink-0"
-                    style={{ backgroundColor: color }}
-                  />
-                  <span className="text-xs text-gray-700 truncate leading-tight">
-                    {entry.type}
-                  </span>
+                  <span className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: color }} />
+                  <span className="text-xs text-gray-700 truncate leading-tight">{entry.type}</span>
                 </div>
                 {/* Bar */}
                 <div className="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">

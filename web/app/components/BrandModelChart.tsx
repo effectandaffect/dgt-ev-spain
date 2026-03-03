@@ -173,7 +173,7 @@ export default function BrandModelChart({ months, selectedYear, selectedMonth, s
                 position: "right",
                 fontSize: 10,
                 fill: "#6b7280",
-                formatter: (v: number) => v.toLocaleString("es-ES"),
+                formatter: (v: number) => Number(v).toLocaleString("es-ES"),
               }}
             >
               {chartData.map((_, i) => (

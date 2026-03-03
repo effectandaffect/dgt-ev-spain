@@ -4,6 +4,7 @@ Agrega los registros parseados y genera los JSON estáticos para la web.
 from __future__ import annotations
 
 import json
+import unicodedata
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -18,21 +19,64 @@ _BRAND_MAP: dict[str, str] = {
     "BYD": "BYD", "BMW": "BMW", "MG": "MG", "SEAT": "SEAT",
     "KIA": "Kia", "VW": "Volkswagen", "VOLKSWAGEN": "Volkswagen",
     "MINI": "Mini", "MERCEDES-BENZ": "Mercedes-Benz",
+    "CITROEN": "Citroën", "CITROEËN": "Citroën",
 }
 
 def _norm_brand(raw: str) -> str:
     s = raw.strip()
     return _BRAND_MAP.get(s.upper(), s.title())
 
+def _ascii_upper(s: str) -> str:
+    """Convierte a mayúsculas eliminando diacríticos (para comparaciones sin acento)."""
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii").upper()
+
 def _norm_model(brand_raw: str, model_raw: str) -> str:
-    """Elimina prefijo de marca del modelo si está repetido (ej: 'BYD BYD DOLPHIN SURF')."""
-    b = brand_raw.strip().upper()
+    """
+    Elimina prefijos de marketing y de marca del campo MODELO DGT.
+    El orden importa: en DGT el MODELO viene como 'NUEVO CITROËN C3 TUR',
+    primero hay que quitar 'NUEVO ', luego el prefijo de marca.
+    Usa comparación sin acentos para cubrir 'CITROEN' vs 'CITROËN'.
+    """
+    b_len = len(brand_raw.strip())        # longitud real del campo MARCA
+    b_fold = _ascii_upper(brand_raw)      # MARCA sin acentos en mayúsculas
     m = model_raw.strip()
-    if m.upper().startswith(b + " "):
-        m = m[len(b) + 1:]
-    elif m.upper() == b:
+
+    # 1. Eliminar prefijos de marketing (van ANTES del nombre en DGT)
+    for prefix in ("NUEVO ", "NUEVA ", "NEW "):
+        if m.upper().startswith(prefix):
+            m = m[len(prefix):]
+            break
+
+    # 2. Eliminar prefijo de marca si está repetido tras quitar marketing
+    #    (usa comparación sin acentos: 'CITROËN' == 'CITROEN' a efectos del match)
+    m_fold = _ascii_upper(m)
+    if m_fold.startswith(b_fold + " "):
+        m = m[b_len + 1:]
+    elif m_fold == b_fold:
         m = ""
+
     return m.title().strip()
+
+
+# ── Mapa de provincias (código DGT → nombre) ──────────────────────────────────
+
+_PROVINCE_MAP: dict[str, str] = {
+    "A": "Alicante", "AB": "Albacete", "AL": "Almería", "AV": "Ávila",
+    "B": "Barcelona", "BA": "Badajoz", "BI": "Vizcaya", "BU": "Burgos",
+    "C": "A Coruña", "CA": "Cádiz", "CC": "Cáceres", "CE": "Ceuta",
+    "CO": "Córdoba", "CR": "Ciudad Real", "CS": "Castellón", "CU": "Cuenca",
+    "GC": "Las Palmas", "GI": "Girona", "GR": "Granada", "GU": "Guadalajara",
+    "H": "Huelva", "HU": "Huesca", "IB": "Baleares",
+    "J": "Jaén", "L": "Lleida", "LE": "León", "LO": "La Rioja", "LU": "Lugo",
+    "M": "Madrid", "MA": "Málaga", "ME": "Melilla", "MU": "Murcia",
+    "NA": "Navarra", "O": "Asturias", "OR": "Ourense",
+    "P": "Palencia", "PM": "Baleares", "PO": "Pontevedra",
+    "S": "Cantabria", "SA": "Salamanca", "SE": "Sevilla",
+    "SG": "Segovia", "SO": "Soria", "SS": "Guipúzcoa",
+    "T": "Tarragona", "TE": "Teruel", "TF": "S.C. Tenerife", "TO": "Toledo",
+    "V": "Valencia", "VA": "Valladolid", "VI": "Álava",
+    "Z": "Zaragoza", "ZA": "Zamora",
+}
 
 
 # ── Estructuras de datos ──────────────────────────────────────────────────────
@@ -41,13 +85,13 @@ class DataStore:
     def __init__(self):
         # BEV diario total: {year: {date_iso: count}}
         self.bev_daily: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-        # BEV diario solo particulares (IND_NUEVO_USADO='ND'): {year: {date_iso: count}}
+        # BEV diario solo particulares: {year: {date_iso: count}}
         self.bev_daily_nd: dict[int, dict[str, int]] = defaultdict(lambda: defaultdict(int))
         # Totales por motorización total: {year: {month_str: {motorization: count}}}
         self.motorization: dict[int, dict[str, dict[str, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
-        # Totales por motorización solo particulares: {year: {month_str: {motorization: count}}}
+        # Totales por motorización solo particulares
         self.motorization_nd: dict[int, dict[str, dict[str, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
@@ -55,8 +99,16 @@ class DataStore:
         self.brands: dict[int, dict[str, dict[tuple, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
-        # Marcas/modelos BEV solo particulares: {year: {month_str: {(brand, model): count}}}
+        # Marcas/modelos BEV solo particulares
         self.brands_nd: dict[int, dict[str, dict[tuple, int]]] = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(int))
+        )
+        # Provincias BEV total: {year: {month_str: {province_code: count}}}
+        self.provinces: dict[int, dict[str, dict[str, int]]] = defaultdict(
+            lambda: defaultdict(lambda: defaultdict(int))
+        )
+        # Provincias BEV solo particulares
+        self.provinces_nd: dict[int, dict[str, dict[str, int]]] = defaultdict(
             lambda: defaultdict(lambda: defaultdict(int))
         )
 
@@ -74,26 +126,31 @@ class DataStore:
             date_iso = d.isoformat()
 
             motoriz = get_motorization(record)
-            # IND_NUEVO_USADO: 'ND' = venta a particular, 'NX' = flota/empresa
             canal = record.get("IND_NUEVO_USADO", "").strip()
             is_particular = (canal == "ND")
 
-            # Acumular motorización total
+            # Acumular motorización
             self.motorization[year][month][motoriz] += 1
-            # Acumular motorización particulares
             if is_particular:
                 self.motorization_nd[year][month][motoriz] += 1
 
-            # Acumular BEV diario y por marca/modelo
+            # Acumular BEV diario, marcas, provincias
             if motoriz == "BEV":
                 self.bev_daily[year][date_iso] += 1
                 if is_particular:
                     self.bev_daily_nd[year][date_iso] += 1
+
                 brand = _norm_brand(record["MARCA"])
                 model = _norm_model(record["MARCA"], record["MODELO"])
                 self.brands[year][month][(brand, model)] += 1
                 if is_particular:
                     self.brands_nd[year][month][(brand, model)] += 1
+
+                prov_code = record.get("COD_PROVINCIA_LETRA", "").strip()
+                if prov_code:
+                    self.provinces[year][month][prov_code] += 1
+                    if is_particular:
+                        self.provinces_nd[year][month][prov_code] += 1
 
             count += 1
         return count
@@ -108,6 +165,7 @@ def write_all(store: DataStore, out_dir: Path, updated: str) -> None:
     _write_monthly_comparison(store, out_dir, updated)
     _write_brands_models(store, out_dir, updated)
     _write_motorization(store, out_dir, updated)
+    _write_provinces(store, out_dir, updated)
     _write_meta(store, out_dir, updated)
     print(f"✅ JSON escritos en {out_dir}")
 
@@ -119,14 +177,8 @@ def _write_bev_daily(store: DataStore, out_dir: Path, updated: str) -> None:
             "year": year,
             "updated": updated,
             "daily": sorted(
-                [
-                    {
-                        "date": d,
-                        "count": c,
-                        "nd_count": nd_daily.get(d, 0),  # solo particulares (ND)
-                    }
-                    for d, c in daily.items()
-                ],
+                [{"date": d, "count": c, "nd_count": nd_daily.get(d, 0)}
+                 for d, c in daily.items()],
                 key=lambda x: x["date"],
             ),
         }
@@ -154,12 +206,8 @@ def _write_brands_models(store: DataStore, out_dir: Path, updated: str) -> None:
             nd_combos = store.brands_nd.get(year, {}).get(month, {})
             top = sorted(combos.items(), key=lambda x: -x[1])[:30]
             months_data[key] = [
-                {
-                    "brand": b,
-                    "model": m,
-                    "count": c,
-                    "nd_count": nd_combos.get((b, m), 0),
-                }
+                {"brand": b, "model": m, "count": c,
+                 "nd_count": nd_combos.get((b, m), 0)}
                 for (b, m), c in top
             ]
     _save(out_dir / "brands_models.json", {"updated": updated, "months": months_data})
@@ -167,13 +215,9 @@ def _write_brands_models(store: DataStore, out_dir: Path, updated: str) -> None:
 
 def _write_motorization(store: DataStore, out_dir: Path, updated: str) -> None:
     LABELS = {
-        "BEV": "Eléctrico (BEV)",
-        "PHEV": "Híbrido enchufable (PHEV)",
-        "HEV": "Híbrido (HEV/MHEV)",
-        "Gasolina": "Gasolina",
-        "Diésel": "Diésel",
-        "Gas": "GLP / GNC",
-        "Otros": "Otros",
+        "BEV": "Eléctrico (BEV)", "PHEV": "Híbrido enchufable (PHEV)",
+        "HEV": "Híbrido (HEV/MHEV)", "Gasolina": "Gasolina",
+        "Diésel": "Diésel", "Gas": "GLP / GNC", "Otros": "Otros",
     }
     ORDER = ["Gasolina", "Diésel", "HEV", "PHEV", "BEV", "Gas", "Otros"]
     months_data: dict[str, dict] = {}
@@ -190,8 +234,7 @@ def _write_motorization(store: DataStore, out_dir: Path, updated: str) -> None:
                 count = mots.get(code, 0)
                 nd_count = nd_mots.get(code, 0)
                 row.append({
-                    "type": LABELS.get(code, code),
-                    "code": code,
+                    "type": LABELS.get(code, code), "code": code,
                     "count": count,
                     "pct": round(count / total * 100, 1),
                     "nd_count": nd_count,
@@ -199,6 +242,25 @@ def _write_motorization(store: DataStore, out_dir: Path, updated: str) -> None:
                 })
             months_data[key] = {"total": total, "nd_total": nd_total, "types": row}
     _save(out_dir / "motorization.json", {"updated": updated, "months": months_data})
+
+
+def _write_provinces(store: DataStore, out_dir: Path, updated: str) -> None:
+    months_data: dict[str, list] = {}
+    for year, months in store.provinces.items():
+        for month, provs in months.items():
+            key = f"{year}-{month}"
+            nd_provs = store.provinces_nd.get(year, {}).get(month, {})
+            top = sorted(provs.items(), key=lambda x: -x[1])[:52]  # todas las provincias
+            months_data[key] = [
+                {
+                    "code": code,
+                    "name": _PROVINCE_MAP.get(code, code),
+                    "count": cnt,
+                    "nd_count": nd_provs.get(code, 0),
+                }
+                for code, cnt in top
+            ]
+    _save(out_dir / "provinces.json", {"updated": updated, "months": months_data})
 
 
 def _write_meta(store: DataStore, out_dir: Path, updated: str) -> None:

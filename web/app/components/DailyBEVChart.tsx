@@ -47,7 +47,7 @@ export default function DailyBEVChart({ data2025, data2026, selectedYear, select
   }, [rawData, selectedYear, monthIndex, soloParticulares]);
 
   const total = chartData.reduce((s, d) => s + d.count, 0);
-  const avg = chartData.length ? (total / chartData.length).toFixed(0) : 0;
+  const avg = chartData.length ? Math.round(total / chartData.length) : 0;
 
   const barColor = soloParticulares ? "#3b82f6" : "#22c55e";
   const label = soloParticulares ? "Particulares (ND)" : "Total matriculaciones";
@@ -59,7 +59,7 @@ export default function DailyBEVChart({ data2025, data2026, selectedYear, select
           Matriculaciones BEV diarias
         </h2>
         <p className="text-xs text-gray-400 mt-0.5">
-          {total.toLocaleString("es-ES")} unidades · media {avg}/día
+          {total.toLocaleString("es-ES")} unidades · media {avg.toLocaleString("es-ES")}/día
           {soloParticulares && (
             <span className="ml-1 text-blue-500">· solo particulares</span>
           )}
