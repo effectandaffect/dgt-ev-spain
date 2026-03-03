@@ -38,41 +38,58 @@ export default function YearComparisonChart({ years, data2025, data2026, soloPar
     return { "2025": agg(data2025), "2026": agg(data2026) };
   }, [data2025, data2026]);
 
+  // Detectar el último mes con datos en 2026 y si está completo
+  const { lastMonth2026, lastMonthIsComplete, cutoff2025 } = useMemo(() => {
+    const lastDate = data2026.length > 0 ? data2026[data2026.length - 1].date : null;
+    const lastMonth2026 = lastDate ? lastDate.slice(5, 7) : null;
+    const lastDay = lastDate ? parseInt(lastDate.slice(8, 10)) : 0;
+    // Mes completo si tenemos datos hasta al menos el día 28
+    const lastMonthIsComplete = lastDay >= 28;
+    const cutoff2025 = lastDate ? `2025${lastDate.slice(4)}` : null;
+    return { lastMonth2026, lastMonthIsComplete, cutoff2025 };
+  }, [data2026]);
+
   const chartData = useMemo(() => {
     return MONTHS_SHORT.map((label, i) => {
       const m = String(i + 1).padStart(2, "0");
       const row: Record<string, number | string> = { month: label };
+
+      // 2025: siempre mostrar datos completos
       if (soloParticulares) {
         if (ndMonthly["2025"][m]) row["2025"] = ndMonthly["2025"][m];
-        if (ndMonthly["2026"][m]) row["2026"] = ndMonthly["2026"][m];
       } else {
-        for (const [year, months] of Object.entries(years)) {
-          if (months[m]) row[year] = months[m].total;
+        if (years["2025"]?.[m]) row["2025"] = years["2025"][m].total;
+      }
+
+      // 2026: omitir el mes en curso si está incompleto (evita falsas caídas)
+      const isIncompleteMonth = m === lastMonth2026 && !lastMonthIsComplete;
+      if (!isIncompleteMonth) {
+        if (soloParticulares) {
+          if (ndMonthly["2026"][m]) row["2026"] = ndMonthly["2026"][m];
+        } else {
+          if (years["2026"]?.[m]) row["2026"] = years["2026"][m].total;
         }
       }
+
       return row;
     });
-  }, [years, soloParticulares, ndMonthly]);
+  }, [years, soloParticulares, ndMonthly, lastMonth2026, lastMonthIsComplete]);
 
   const sortedYears = Object.keys(years).sort();
   const colors = ["#94a3b8", "#22c55e"];
 
-  // YTD
-  const get2026Total = () => soloParticulares
-    ? Object.values(ndMonthly["2026"]).reduce((s, v) => s + v, 0)
-    : Object.values(years["2026"] ?? {}).reduce((s, v) => s + v.total, 0);
+  // YTD — comparativa hasta el mismo día del año anterior
+  const ytdCurrent = soloParticulares
+    ? data2026.reduce((s, d) => s + (d.nd_count ?? 0), 0)
+    : data2026.reduce((s, d) => s + d.count, 0);
 
-  const get2025Same = () => {
-    const months2026 = soloParticulares
-      ? Object.keys(ndMonthly["2026"]).filter(m => ndMonthly["2026"][m] > 0)
-      : Object.keys(years["2026"] ?? {});
+  const ytdPrevSame = useMemo(() => {
+    if (!cutoff2025) return 0;
     return soloParticulares
-      ? months2026.reduce((s, m) => s + (ndMonthly["2025"][m] ?? 0), 0)
-      : months2026.reduce((s, m) => s + (years["2025"]?.[m]?.total ?? 0), 0);
-  };
+      ? data2025.filter((d) => d.date <= cutoff2025).reduce((s, d) => s + (d.nd_count ?? 0), 0)
+      : data2025.filter((d) => d.date <= cutoff2025).reduce((s, d) => s + d.count, 0);
+  }, [data2025, cutoff2025, soloParticulares]);
 
-  const ytdCurrent = get2026Total();
-  const ytdPrevSame = get2025Same();
   const ytdDiff = ytdPrevSame > 0 ? ((ytdCurrent - ytdPrevSame) / ytdPrevSame) * 100 : 0;
 
   return (

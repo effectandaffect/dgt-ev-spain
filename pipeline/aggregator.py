@@ -158,8 +158,67 @@ class DataStore:
 
 # ── Generadores de JSON ───────────────────────────────────────────────────────
 
+def _load_past_months_from_json(store: DataStore, out_dir: Path) -> None:
+    """
+    Carga brands, motorization y provinces desde los JSON existentes para los
+    meses que aún no están en el store (= meses anteriores al mes en curso).
+    Esto evita que el modo de actualización diaria (que solo procesa el mes
+    actual) sobreescriba con datos vacíos los meses históricos.
+    """
+    # ── brands_models.json ──────────────────────────────────────────────────
+    brands_file = out_dir / "brands_models.json"
+    if brands_file.exists():
+        try:
+            existing = json.loads(brands_file.read_text(encoding="utf-8"))
+            for mk, entries in existing.get("months", {}).items():
+                y, mo = int(mk[:4]), mk[5:7]
+                if mo not in store.brands.get(y, {}):
+                    for e in entries:
+                        key = (e["brand"], e["model"])
+                        store.brands[y][mo][key] = e["count"]
+                        if nd := e.get("nd_count", 0):
+                            store.brands_nd[y][mo][key] = nd
+        except Exception:
+            pass
+
+    # ── motorization.json ───────────────────────────────────────────────────
+    mot_file = out_dir / "motorization.json"
+    if mot_file.exists():
+        try:
+            existing = json.loads(mot_file.read_text(encoding="utf-8"))
+            for mk, data in existing.get("months", {}).items():
+                y, mo = int(mk[:4]), mk[5:7]
+                if mo not in store.motorization.get(y, {}):
+                    for t in data.get("types", []):
+                        code = t["code"]
+                        store.motorization[y][mo][code] = t["count"]
+                        if nd := t.get("nd_count", 0):
+                            store.motorization_nd[y][mo][code] = nd
+        except Exception:
+            pass
+
+    # ── provinces.json ──────────────────────────────────────────────────────
+    prov_file = out_dir / "provinces.json"
+    if prov_file.exists():
+        try:
+            existing = json.loads(prov_file.read_text(encoding="utf-8"))
+            for mk, entries in existing.get("months", {}).items():
+                y, mo = int(mk[:4]), mk[5:7]
+                if mo not in store.provinces.get(y, {}):
+                    for e in entries:
+                        store.provinces[y][mo][e["code"]] = e["count"]
+                        if nd := e.get("nd_count", 0):
+                            store.provinces_nd[y][mo][e["code"]] = nd
+        except Exception:
+            pass
+
+
 def write_all(store: DataStore, out_dir: Path, updated: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Preservar meses históricos de los JSON existentes (el modo diario solo
+    # procesa el mes en curso; sin esto se perderían meses anteriores).
+    _load_past_months_from_json(store, out_dir)
 
     _write_bev_daily(store, out_dir, updated)
     _write_monthly_comparison(store, out_dir, updated)

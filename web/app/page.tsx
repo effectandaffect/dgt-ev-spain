@@ -97,18 +97,29 @@ export default function Home() {
     return comparison?.years[String(selectedYear)]?.[selectedMonth]?.total ?? 0;
   }, [bev2025, bev2026, comparison, selectedYear, selectedMonth, soloParticulares]);
 
-  // Mismo mes del año anterior (para la tendencia del scorecard mes en curso)
+  // Mismo mes del año anterior — solo hasta el mismo día del mes para ser justo
   const monthTotalPrev = useMemo(() => {
-    const prevYear = String(selectedYear - 1);
+    // Solo tenemos datos de 2025 como referencia (no hay 2024)
+    if (selectedYear !== 2026) return 0;
+
+    // Encontrar el último día con datos en el mes/año seleccionado
+    const prefix = `${selectedYear}-${selectedMonth}`;
+    const monthEntries2026 = bev2026.filter((d) => d.date.startsWith(prefix));
+    if (monthEntries2026.length === 0) return 0;
+
+    const lastDay = monthEntries2026[monthEntries2026.length - 1].date.slice(8); // "DD"
+    const prevPrefix = `${selectedYear - 1}-${selectedMonth}`;
+    const prevCutoff = `${selectedYear - 1}-${selectedMonth}-${lastDay}`;
+
     if (soloParticulares) {
-      const source = selectedYear === 2026 ? bev2025 : [];
-      const prefix = `${selectedYear - 1}-${selectedMonth}`;
-      return source
-        .filter((d) => d.date.startsWith(prefix))
+      return bev2025
+        .filter((d) => d.date.startsWith(prevPrefix) && d.date <= prevCutoff)
         .reduce((s, d) => s + (d.nd_count ?? 0), 0);
     }
-    return comparison?.years[prevYear]?.[selectedMonth]?.total ?? 0;
-  }, [bev2025, comparison, selectedYear, selectedMonth, soloParticulares]);
+    return bev2025
+      .filter((d) => d.date.startsWith(prevPrefix) && d.date <= prevCutoff)
+      .reduce((s, d) => s + d.count, 0);
+  }, [bev2025, bev2026, selectedYear, selectedMonth, soloParticulares]);
 
   const monthTrend = monthTotalPrev > 0
     ? ((monthTotal - monthTotalPrev) / monthTotalPrev) * 100
@@ -121,30 +132,28 @@ export default function Home() {
     () => bev2026.reduce((s, d) => s + (d.nd_count ?? 0), 0),
     [bev2026],
   );
-  const totalNd2025 = useMemo(
-    () => bev2025.reduce((s, d) => s + (d.nd_count ?? 0), 0),
-    [bev2025],
+
+  // Comparativa YTD justa: mismo día en 2025 (no meses completos)
+  const lastDate2026 = useMemo(
+    () => (bev2026.length > 0 ? bev2026[bev2026.length - 1].date : null),
+    [bev2026],
   );
+  const cutoff2025 = lastDate2026 ? `2025${lastDate2026.slice(4)}` : null;
 
-  const months2026 = comparison ? Object.keys(comparison.years["2026"] ?? {}) : [];
+  const ytd2025SameDay = useMemo(() => {
+    if (!cutoff2025) return 0;
+    return bev2025.filter((d) => d.date <= cutoff2025).reduce((s, d) => s + d.count, 0);
+  }, [bev2025, cutoff2025]);
 
-  const sameperiod2025 = comparison
-    ? months2026.reduce((s, m) => s + (comparison.years["2025"]?.[m]?.total ?? 0), 0)
-    : 0;
-
-  const ndByMonth2025 = useMemo(() => {
-    const r: Record<string, number> = {};
-    for (const d of bev2025) {
-      const m = d.date.slice(5, 7);
-      r[m] = (r[m] ?? 0) + (d.nd_count ?? 0);
-    }
-    return r;
-  }, [bev2025]);
-
-  const sameperiodNd2025 = months2026.reduce((s, m) => s + (ndByMonth2025[m] ?? 0), 0);
+  const ytdNd2025SameDay = useMemo(() => {
+    if (!cutoff2025) return 0;
+    return bev2025
+      .filter((d) => d.date <= cutoff2025)
+      .reduce((s, d) => s + (d.nd_count ?? 0), 0);
+  }, [bev2025, cutoff2025]);
 
   const display2026 = soloParticulares ? totalNd2026  : total2026;
-  const displayPrev = soloParticulares ? sameperiodNd2025 : sameperiod2025;
+  const displayPrev = soloParticulares ? ytdNd2025SameDay : ytd2025SameDay;
   const ytdTrend = displayPrev > 0 ? ((display2026 - displayPrev) / displayPrev) * 100 : 0;
 
   // ── Cuota BEV del mes seleccionado ──────────────────────────────────────────

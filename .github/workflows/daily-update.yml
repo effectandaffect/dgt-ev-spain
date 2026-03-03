@@ -35,7 +35,19 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r pipeline/requirements.txt
 
+      # Solo cachear y descargar datos en ejecuciones programadas o manuales.
+      # En push de código, usamos los JSON ya commitados en el repo.
+      - name: Cache DGT downloaded files
+        if: github.event_name != 'push'
+        uses: actions/cache@v4
+        with:
+          path: .dgt_cache
+          key: dgt-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            dgt-cache-${{ runner.os }}-
+
       - name: Download and process DGT data
+        if: github.event_name != 'push'
         run: |
           cd pipeline
           if [ -n "${{ github.event.inputs.since }}" ]; then
@@ -71,6 +83,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Commit updated JSON data
+        if: github.event_name != 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
