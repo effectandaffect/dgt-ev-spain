@@ -41,8 +41,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
     return entries
       .map((e) => ({ name: e.name, count: soloParticulares ? e.nd_count : e.count }))
       .filter((e) => e.count > 0)
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 20);
+      .sort((a, b) => b.count - a.count);
   }, [months, monthKey, soloParticulares]);
 
   // ── Datos por año ─────────────────────────────────────────────────────────
@@ -57,13 +56,12 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
     return Object.entries(agg)
       .filter(([, c]) => c > 0)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 20)
       .map(([name, count]) => ({ name, count }));
   }, [months, selectedYear, soloParticulares]);
 
   const chartData = time === "mes" ? monthChartData : yearChartData;
   const total = chartData.reduce((s, d) => s + d.count, 0);
-  const chartHeight = Math.max(280, chartData.length * 26);
+  const chartHeight = Math.max(500, chartData.length * 22);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
