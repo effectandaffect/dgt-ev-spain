@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { fmt } from "../lib/fmt";
 
 interface MotorizEntry {
   type: string;
@@ -103,7 +104,7 @@ export default function MotorizationChart({ months, selectedYear, selectedMonth,
           <h2 className="text-base font-semibold text-gray-800">Cuota por motorización</h2>
           <p className="text-xs text-gray-400 mt-0.5">
             {activeData
-              ? `${displayTotal.toLocaleString("es-ES")} turismos${soloParticulares ? " particulares" : ""}`
+              ? `${fmt(displayTotal)} turismos${soloParticulares ? " particulares" : ""}`
               : "Sin datos para este período"}
             {time === "año" && <span className="ml-1">· año completo {selectedYear}</span>}
           </p>
@@ -159,7 +160,7 @@ export default function MotorizationChart({ months, selectedYear, selectedMonth,
                 </div>
                 {/* Count */}
                 <div className="w-20 shrink-0 text-right text-xs font-semibold text-gray-800 tabular-nums">
-                  {displayCount.toLocaleString("es-ES")}
+                  {fmt(displayCount)}
                 </div>
                 {/* Pct */}
                 <div className="w-10 shrink-0 text-right text-xs text-gray-400 tabular-nums">

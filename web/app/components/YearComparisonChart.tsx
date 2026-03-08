@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { fmt } from "../lib/fmt";
 import {
   CartesianGrid,
   Legend,
@@ -118,10 +119,10 @@ export default function YearComparisonChart({ years, data2025, data2026, soloPar
             tick={{ fontSize: 11 }}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(v) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v)}
+            tickFormatter={(v) => fmt(v)}
           />
           <Tooltip
-            formatter={(v: number, name: string) => [v.toLocaleString("es-ES"), `BEV ${name}`]}
+            formatter={(v: number, name: string) => [fmt(v), `BEV ${name}`]}
           />
           <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12 }} />
           {sortedYears.map((year, i) => (

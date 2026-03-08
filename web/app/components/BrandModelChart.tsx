@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { fmt } from "../lib/fmt";
 import {
   Bar,
   BarChart,
@@ -98,7 +99,7 @@ export default function BrandModelChart({ months, selectedYear, selectedMonth, s
             )}
           </h2>
           <p className="text-xs text-gray-400 mt-0.5">
-            {total.toLocaleString("es-ES")} matriculaciones{soloParticulares ? " particulares" : " BEV"}
+            {fmt(total)} matriculaciones{soloParticulares ? " particulares" : " BEV"}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -149,7 +150,7 @@ export default function BrandModelChart({ months, selectedYear, selectedMonth, s
               tick={{ fontSize: 10 }}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(v) => v.toLocaleString("es-ES")}
+              tickFormatter={(v) => fmt(v)}
             />
             <YAxis
               type="category"
@@ -160,7 +161,7 @@ export default function BrandModelChart({ months, selectedYear, selectedMonth, s
             />
             <Tooltip
               formatter={(v: number) => [
-                v.toLocaleString("es-ES"),
+                fmt(v),
                 soloParticulares ? "Particulares" : "Matriculaciones",
               ]}
               cursor={{ fill: soloParticulares ? "#eff6ff" : "#f0fdf4" }}
@@ -173,7 +174,7 @@ export default function BrandModelChart({ months, selectedYear, selectedMonth, s
                 position: "right",
                 fontSize: 10,
                 fill: "#6b7280",
-                formatter: (v: number) => Number(v).toLocaleString("es-ES"),
+                formatter: (v: number) => fmt(Number(v)),
               }}
             >
               {chartData.map((_, i) => (

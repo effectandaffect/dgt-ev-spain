@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { fmt } from "../lib/fmt";
 import {
   Bar,
   BarChart,
@@ -59,7 +60,7 @@ export default function DailyBEVChart({ data2025, data2026, selectedYear, select
           Matriculaciones BEV diarias
         </h2>
         <p className="text-xs text-gray-400 mt-0.5">
-          {total.toLocaleString("es-ES")} unidades · media {avg.toLocaleString("es-ES")}/día
+          {fmt(total)} unidades · media {fmt(avg)}/día
           {soloParticulares && (
             <span className="ml-1 text-blue-500">· solo particulares</span>
           )}
@@ -79,7 +80,7 @@ export default function DailyBEVChart({ data2025, data2026, selectedYear, select
               tick={{ fontSize: 11 }}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(v: number) => v >= 1000 ? v.toLocaleString("es-ES") : String(v)}
+              tickFormatter={(v: number) => fmt(v)}
             />
             <Tooltip
               formatter={(v: number, _name: string, props) => {
@@ -89,11 +90,11 @@ export default function DailyBEVChart({ data2025, data2026, selectedYear, select
                     ? ((item.countND / item.countTotal) * 100).toFixed(0)
                     : 0;
                   return [
-                    `${v.toLocaleString("es-ES")} (${pct}% del total ${item.countTotal.toLocaleString("es-ES")})`,
+                    `${fmt(v)} (${pct}% del total ${fmt(item.countTotal)})`,
                     label,
                   ];
                 }
-                return [v.toLocaleString("es-ES"), label];
+                return [fmt(v), label];
               }}
               labelFormatter={(l) => {
                 const d = chartData.find((x) => x.day === l);

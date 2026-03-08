@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { fmt } from "../lib/fmt";
 import {
   Bar,
   BarChart,
@@ -78,7 +79,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
             )}
           </h2>
           <p className="text-xs text-gray-400 mt-0.5">
-            {total.toLocaleString("es-ES")} matriculaciones{soloParticulares ? " particulares" : " BEV"}
+            {fmt(total)} matriculaciones{soloParticulares ? " particulares" : " BEV"}
           </p>
         </div>
         {/* Mes / Año toggle */}
@@ -113,7 +114,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
               tick={{ fontSize: 10 }}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(v: number) => v.toLocaleString("es-ES")}
+              tickFormatter={(v: number) => fmt(v)}
             />
             <YAxis
               type="category"
@@ -124,7 +125,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
             />
             <Tooltip
               formatter={(v: number) => [
-                Number(v).toLocaleString("es-ES"),
+                fmt(Number(v)),
                 soloParticulares ? "Particulares" : "Matriculaciones",
               ]}
               cursor={{ fill: "#eef2ff" }}
@@ -138,7 +139,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
                 position: "right",
                 fontSize: 10,
                 fill: "#6b7280",
-                formatter: (v: number) => Number(v).toLocaleString("es-ES"),
+                formatter: (v: number) => fmt(Number(v)),
               }}
             >
               {chartData.map((entry, i) => {

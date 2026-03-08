@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import BrandModelChart from "./components/BrandModelChart";
+import { fmt } from "./lib/fmt";
 import DailyBEVChart from "./components/DailyBEVChart";
 import MotorizationChart from "./components/MotorizationChart";
 import ProvinceChart from "./components/ProvinceChart";
@@ -297,13 +298,13 @@ export default function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <StatsCard
             title="BEV 2026 (YTD)"
-            value={display2026.toLocaleString("es-ES")}
+            value={fmt(display2026)}
             sub={soloParticulares ? "particulares" : "turismos eléctricos puros"}
             trend={ytdTrend}
           />
           <StatsCard
             title={`BEV ${monthLabel}`}
-            value={monthTotal > 0 ? monthTotal.toLocaleString("es-ES") : "—"}
+            value={monthTotal > 0 ? fmt(monthTotal) : "—"}
             sub={monthTotal > 0
               ? (soloParticulares ? "ventas a particulares" : "matriculaciones del mes")
               : "sin datos"}
@@ -319,7 +320,7 @@ export default function Home() {
             title="Top marca BEV"
             value={topBrand?.brand ?? "—"}
             sub={topBrand
-              ? `${topBrand.model} · ${(soloParticulares ? topBrand.nd_count : topBrand.count).toLocaleString("es-ES")} uds`
+              ? `${topBrand.model} · ${fmt(soloParticulares ? topBrand.nd_count : topBrand.count)} uds`
               : ""}
             color="purple"
           />
