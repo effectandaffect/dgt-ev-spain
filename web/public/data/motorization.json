@@ -63,68 +63,6 @@
         }
       ]
     },
-    "2026-02": {
-      "total": 1,
-      "nd_total": 1,
-      "types": [
-        {
-          "type": "Gasolina",
-          "code": "Gasolina",
-          "count": 1,
-          "pct": 100.0,
-          "nd_count": 1,
-          "nd_pct": 100.0
-        },
-        {
-          "type": "Diésel",
-          "code": "Diésel",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        },
-        {
-          "type": "Híbrido (HEV/MHEV)",
-          "code": "HEV",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        },
-        {
-          "type": "Híbrido enchufable (PHEV)",
-          "code": "PHEV",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        },
-        {
-          "type": "Eléctrico (BEV)",
-          "code": "BEV",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        },
-        {
-          "type": "GLP / GNC",
-          "code": "Gas",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        },
-        {
-          "type": "Otros",
-          "code": "Otros",
-          "count": 0,
-          "pct": 0.0,
-          "nd_count": 0,
-          "nd_pct": 0.0
-        }
-      ]
-    },
     "2026-01": {
       "total": 74903,
       "nd_total": 37564,
@@ -183,6 +121,68 @@
           "count": 200,
           "pct": 0.3,
           "nd_count": 86,
+          "nd_pct": 0.2
+        }
+      ]
+    },
+    "2026-02": {
+      "total": 99654,
+      "nd_total": 43794,
+      "types": [
+        {
+          "type": "Gasolina",
+          "code": "Gasolina",
+          "count": 22726,
+          "pct": 22.8,
+          "nd_count": 8824,
+          "nd_pct": 20.1
+        },
+        {
+          "type": "Diésel",
+          "code": "Diésel",
+          "count": 8421,
+          "pct": 8.5,
+          "nd_count": 3070,
+          "nd_pct": 7.0
+        },
+        {
+          "type": "Híbrido (HEV/MHEV)",
+          "code": "HEV",
+          "count": 12305,
+          "pct": 12.3,
+          "nd_count": 4856,
+          "nd_pct": 11.1
+        },
+        {
+          "type": "Híbrido enchufable (PHEV)",
+          "code": "PHEV",
+          "count": 46642,
+          "pct": 46.8,
+          "nd_count": 21265,
+          "nd_pct": 48.6
+        },
+        {
+          "type": "Eléctrico (BEV)",
+          "code": "BEV",
+          "count": 9098,
+          "pct": 9.1,
+          "nd_count": 5604,
+          "nd_pct": 12.8
+        },
+        {
+          "type": "GLP / GNC",
+          "code": "Gas",
+          "count": 174,
+          "pct": 0.2,
+          "nd_count": 107,
+          "nd_pct": 0.2
+        },
+        {
+          "type": "Otros",
+          "code": "Otros",
+          "count": 288,
+          "pct": 0.3,
+          "nd_count": 68,
           "nd_pct": 0.2
         }
       ]

@@ -129,17 +129,26 @@ class DataStore:
             canal = record.get("IND_NUEVO_USADO", "").strip()
             is_particular = (canal == "ND")
 
-            # Acumular motorización
-            self.motorization[year][month][motoriz] += 1
-            if is_particular:
-                self.motorization_nd[year][month][motoriz] += 1
-
-            # Acumular BEV diario, marcas, provincias
+            # BEV diario: siempre usa la fecha real de matriculación
             if motoriz == "BEV":
                 self.bev_daily[year][date_iso] += 1
                 if is_particular:
                     self.bev_daily_nd[year][date_iso] += 1
 
+            # Motorización, marcas y provincias: solo para registros del mes del fichero.
+            # Los registros tardíos (FECHA_MATRICULACION en un mes anterior) se ignoran
+            # aquí para evitar que corrompan los stats mensuales históricos; esos meses
+            # ya tienen sus datos completos en los JSON y se cargan vía
+            # _load_past_months_from_json.
+            if d.year != file_date.year or d.month != file_date.month:
+                count += 1
+                continue
+
+            self.motorization[year][month][motoriz] += 1
+            if is_particular:
+                self.motorization_nd[year][month][motoriz] += 1
+
+            if motoriz == "BEV":
                 brand = _norm_brand(record["MARCA"])
                 model = _norm_model(record["MARCA"], record["MODELO"])
                 self.brands[year][month][(brand, model)] += 1
