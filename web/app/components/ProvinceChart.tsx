@@ -61,7 +61,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
 
   const chartData = time === "mes" ? monthChartData : yearChartData;
   const total = chartData.reduce((s, d) => s + d.count, 0);
-  const chartHeight = Math.max(500, chartData.length * 22);
+  const chartHeight = Math.max(500, chartData.length * 28);
 
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
@@ -120,6 +120,7 @@ export default function ProvinceChart({ months, selectedYear, selectedMonth, sol
               tick={{ fontSize: 11 }}
               tickLine={false}
               width={110}
+              interval={0}
             />
             <Tooltip
               formatter={(v: number) => [
