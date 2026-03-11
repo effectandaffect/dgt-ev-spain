@@ -1,48 +1,60 @@
 {
-  "updated": "2026-03-10",
+  "updated": "2026-03-11",
   "months": {
     "2026-03": [
       {
         "brand": "Tesla",
         "model": "Model 3",
-        "count": 353,
-        "nd_count": 289
+        "count": 446,
+        "nd_count": 373
       },
       {
         "brand": "Tesla",
         "model": "Model Y",
-        "count": 135,
-        "nd_count": 103
-      },
-      {
-        "brand": "Kia",
-        "model": "Ev3",
-        "count": 70,
-        "nd_count": 53
+        "count": 163,
+        "nd_count": 123
       },
       {
         "brand": "BYD",
         "model": "Dolphin Surf",
-        "count": 69,
-        "nd_count": 63
+        "count": 84,
+        "nd_count": 77
+      },
+      {
+        "brand": "Kia",
+        "model": "Ev3",
+        "count": 79,
+        "nd_count": 58
       },
       {
         "brand": "BYD",
         "model": "Atto 2",
-        "count": 47,
-        "nd_count": 45
+        "count": 58,
+        "nd_count": 54
       },
       {
-        "brand": "Mercedes-Benz",
-        "model": "Eqa 250+",
-        "count": 43,
-        "nd_count": 25
+        "brand": "BMW",
+        "model": "Ix3 50 Xdrive",
+        "count": 55,
+        "nd_count": 3
       },
       {
         "brand": "Mercedes-Benz",
         "model": "Cla 250+",
-        "count": 42,
-        "nd_count": 23
+        "count": 52,
+        "nd_count": 26
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqa 250+",
+        "count": 47,
+        "nd_count": 26
+      },
+      {
+        "brand": "Citroën",
+        "model": "Ë-C3 E",
+        "count": 43,
+        "nd_count": 22
       },
       {
         "brand": "Toyota",
@@ -51,70 +63,82 @@
         "nd_count": 24
       },
       {
-        "brand": "BMW",
-        "model": "Ix3 50 Xdrive",
-        "count": 36,
-        "nd_count": 2
-      },
-      {
         "brand": "Leapmotor",
         "model": "B10",
-        "count": 36,
-        "nd_count": 32
-      },
-      {
-        "brand": "Citroën",
-        "model": "Ë-C3 E",
-        "count": 35,
-        "nd_count": 15
-      },
-      {
-        "brand": "Deepal",
-        "model": "S05",
-        "count": 30,
-        "nd_count": 30
-      },
-      {
-        "brand": "Ford",
-        "model": "Capri",
-        "count": 29,
-        "nd_count": 2
+        "count": 38,
+        "nd_count": 34
       },
       {
         "brand": "Renault",
         "model": "5 E-Tech Ele",
-        "count": 27,
-        "nd_count": 24
+        "count": 37,
+        "nd_count": 33
+      },
+      {
+        "brand": "Deepal",
+        "model": "S05",
+        "count": 36,
+        "nd_count": 35
       },
       {
         "brand": "Volvo",
         "model": "Ex30",
-        "count": 26,
-        "nd_count": 21
+        "count": 32,
+        "nd_count": 25
+      },
+      {
+        "brand": "Ford",
+        "model": "Capri",
+        "count": 30,
+        "nd_count": 3
       },
       {
         "brand": "BMW",
         "model": "Ix2 Edrive20",
-        "count": 25,
-        "nd_count": 7
-      },
-      {
-        "brand": "Mazda",
-        "model": "6E",
-        "count": 21,
-        "nd_count": 21
-      },
-      {
-        "brand": "Mini",
-        "model": "Countryman E",
-        "count": 20,
-        "nd_count": 7
+        "count": 30,
+        "nd_count": 11
       },
       {
         "brand": "Hyundai",
         "model": "Inster",
+        "count": 23,
+        "nd_count": 16
+      },
+      {
+        "brand": "Mazda",
+        "model": "6E",
+        "count": 23,
+        "nd_count": 22
+      },
+      {
+        "brand": "Mini",
+        "model": "Countryman E",
+        "count": 22,
+        "nd_count": 7
+      },
+      {
+        "brand": "Omoda",
+        "model": "Omoda5 Ev",
+        "count": 21,
+        "nd_count": 20
+      },
+      {
+        "brand": "Polestar",
+        "model": "4",
         "count": 20,
-        "nd_count": 14
+        "nd_count": 15
+      },
+      {
+        "brand": "Dacia",
+        "model": "Spring",
+        "count": 20,
+        "nd_count": 11
+      },
+      {
+        "brand": "BMW",
+        "model": "Ix1 Edrive20",
+        "count": 20,
+        "nd_count": 10
       },
       {
         "brand": "Jeep",
@@ -123,64 +147,40 @@
         "nd_count": 5
       },
       {
-        "brand": "Polestar",
-        "model": "4",
-        "count": 19,
-        "nd_count": 14
-      },
-      {
-        "brand": "Mercedes-Benz",
-        "model": "Eqe 350+",
-        "count": 17,
-        "nd_count": 11
-      },
-      {
-        "brand": "BMW",
-        "model": "Ix1 Edrive20",
-        "count": 17,
-        "nd_count": 9
-      },
-      {
-        "brand": "BYD",
-        "model": "Seal U",
-        "count": 16,
-        "nd_count": 14
-      },
-      {
         "brand": "Xpeng",
         "model": "G6",
-        "count": 16,
-        "nd_count": 14
-      },
-      {
-        "brand": "BYD",
-        "model": "Sealion 7",
-        "count": 15,
-        "nd_count": 11
+        "count": 19,
+        "nd_count": 16
       },
       {
         "brand": "Opel",
         "model": "Frontera Gs Electric",
-        "count": 14,
+        "count": 18,
         "nd_count": 1
+      },
+      {
+        "brand": "Nissan",
+        "model": "Micra",
+        "count": 18,
+        "nd_count": 17
+      },
+      {
+        "brand": "Mercedes-Benz",
+        "model": "Eqe 350+",
+        "count": 18,
+        "nd_count": 11
       },
       {
         "brand": "Kia",
         "model": "Niro",
-        "count": 14,
-        "nd_count": 14
+        "count": 17,
+        "nd_count": 17
       },
       {
         "brand": "Citroën",
         "model": "Ë-C3 A",
-        "count": 14,
-        "nd_count": 4
-      },
-      {
-        "brand": "Omoda",
-        "model": "Omoda5 Ev",
-        "count": 14,
-        "nd_count": 14
+        "count": 17,
+        "nd_count": 7
       }
     ],
     "2026-01": [
