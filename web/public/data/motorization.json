@@ -1,64 +1,64 @@
 {
-  "updated": "2026-03-11",
+  "updated": "2026-03-12",
   "months": {
     "2026-03": {
-      "total": 26363,
-      "nd_total": 9829,
+      "total": 31768,
+      "nd_total": 12015,
       "types": [
         {
           "type": "Gasolina",
           "code": "Gasolina",
-          "count": 6836,
-          "pct": 25.9,
-          "nd_count": 1907,
-          "nd_pct": 19.4
+          "count": 8167,
+          "pct": 25.7,
+          "nd_count": 2360,
+          "nd_pct": 19.6
         },
         {
           "type": "Diésel",
           "code": "Diésel",
-          "count": 2233,
-          "pct": 8.5,
-          "nd_count": 660,
-          "nd_pct": 6.7
+          "count": 2600,
+          "pct": 8.2,
+          "nd_count": 812,
+          "nd_pct": 6.8
         },
         {
           "type": "Híbrido (HEV/MHEV)",
           "code": "HEV",
-          "count": 2862,
+          "count": 3477,
           "pct": 10.9,
-          "nd_count": 1128,
+          "nd_count": 1381,
           "nd_pct": 11.5
         },
         {
           "type": "Híbrido enchufable (PHEV)",
           "code": "PHEV",
-          "count": 11940,
-          "pct": 45.3,
-          "nd_count": 4698,
-          "nd_pct": 47.8
+          "count": 14418,
+          "pct": 45.4,
+          "nd_count": 5692,
+          "nd_pct": 47.4
         },
         {
           "type": "Eléctrico (BEV)",
           "code": "BEV",
-          "count": 2083,
-          "pct": 7.9,
-          "nd_count": 1388,
-          "nd_pct": 14.1
+          "count": 2590,
+          "pct": 8.2,
+          "nd_count": 1713,
+          "nd_pct": 14.3
         },
         {
           "type": "GLP / GNC",
           "code": "Gas",
-          "count": 127,
-          "pct": 0.5,
-          "nd_count": 29,
+          "count": 136,
+          "pct": 0.4,
+          "nd_count": 36,
           "nd_pct": 0.3
         },
         {
           "type": "Otros",
           "code": "Otros",
-          "count": 282,
-          "pct": 1.1,
-          "nd_count": 19,
+          "count": 380,
+          "pct": 1.2,
+          "nd_count": 21,
           "nd_pct": 0.2
         }
       ]
