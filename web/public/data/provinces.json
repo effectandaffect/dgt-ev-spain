@@ -1,168 +1,180 @@
 {
-  "updated": "2026-03-18",
+  "updated": "2026-03-19",
   "months": {
     "2026-03": [
       {
         "code": "M",
         "name": "Madrid",
-        "count": 1581,
-        "nd_count": 725
+        "count": 1753,
+        "nd_count": 795
       },
       {
         "code": "B",
         "name": "Barcelona",
-        "count": 473,
-        "nd_count": 365
+        "count": 532,
+        "nd_count": 410
       },
       {
         "code": "V",
         "name": "Valencia",
-        "count": 375,
-        "nd_count": 264
+        "count": 389,
+        "nd_count": 277
       },
       {
         "code": "A",
         "name": "Alicante",
-        "count": 222,
-        "nd_count": 186
+        "count": 247,
+        "nd_count": 207
       },
       {
         "code": "MA",
         "name": "Málaga",
-        "count": 150,
-        "nd_count": 132
+        "count": 168,
+        "nd_count": 144
       },
       {
         "code": "IB",
         "name": "Baleares",
-        "count": 112,
-        "nd_count": 89
+        "count": 119,
+        "nd_count": 95
       },
       {
         "code": "MU",
         "name": "Murcia",
-        "count": 102,
-        "nd_count": 70
+        "count": 114,
+        "nd_count": 81
       },
       {
         "code": "GI",
         "name": "Girona",
-        "count": 95,
-        "nd_count": 72
-      },
-      {
-        "code": "T",
-        "name": "Tarragona",
-        "count": 84,
-        "nd_count": 76
-      },
-      {
-        "code": "SE",
-        "name": "Sevilla",
-        "count": 81,
-        "nd_count": 69
+        "count": 99,
+        "nd_count": 75
       },
       {
         "code": "PO",
         "name": "Pontevedra",
-        "count": 80,
-        "nd_count": 63
+        "count": 94,
+        "nd_count": 74
+      },
+      {
+        "code": "T",
+        "name": "Tarragona",
+        "count": 93,
+        "nd_count": 84
+      },
+      {
+        "code": "SE",
+        "name": "Sevilla",
+        "count": 91,
+        "nd_count": 78
       },
       {
         "code": "C",
         "name": "A Coruña",
-        "count": 79,
-        "nd_count": 54
+        "count": 90,
+        "nd_count": 64
       },
       {
         "code": "GC",
         "name": "Las Palmas",
-        "count": 76,
-        "nd_count": 56
+        "count": 88,
+        "nd_count": 68
       },
       {
         "code": "NA",
         "name": "Navarra",
-        "count": 75,
-        "nd_count": 62
-      },
-      {
-        "code": "GR",
-        "name": "Granada",
-        "count": 69,
-        "nd_count": 55
+        "count": 84,
+        "nd_count": 70
       },
       {
         "code": "TO",
         "name": "Toledo",
-        "count": 68,
-        "nd_count": 56
+        "count": 81,
+        "nd_count": 69
+      },
+      {
+        "code": "GR",
+        "name": "Granada",
+        "count": 80,
+        "nd_count": 65
       },
       {
         "code": "BI",
         "name": "Vizcaya",
-        "count": 64,
-        "nd_count": 51
+        "count": 74,
+        "nd_count": 60
       },
       {
         "code": "TF",
         "name": "S.C. Tenerife",
-        "count": 56,
-        "nd_count": 42
+        "count": 61,
+        "nd_count": 44
       },
       {
         "code": "Z",
         "name": "Zaragoza",
-        "count": 47,
-        "nd_count": 39
-      },
-      {
-        "code": "L",
-        "name": "Lleida",
-        "count": 41,
-        "nd_count": 32
-      },
-      {
-        "code": "CA",
-        "name": "Cádiz",
-        "count": 40,
-        "nd_count": 35
+        "count": 51,
+        "nd_count": 43
       },
       {
         "code": "CS",
         "name": "Castellón",
-        "count": 39,
-        "nd_count": 32
+        "count": 47,
+        "nd_count": 38
+      },
+      {
+        "code": "L",
+        "name": "Lleida",
+        "count": 46,
+        "nd_count": 35
+      },
+      {
+        "code": "CA",
+        "name": "Cádiz",
+        "count": 44,
+        "nd_count": 37
       },
       {
         "code": "VA",
         "name": "Valladolid",
-        "count": 39,
-        "nd_count": 30
+        "count": 41,
+        "nd_count": 32
       },
       {
         "code": "O",
         "name": "Asturias",
-        "count": 35,
-        "nd_count": 27
+        "count": 41,
+        "nd_count": 33
       },
       {
         "code": "SS",
         "name": "Guipúzcoa",
-        "count": 33,
-        "nd_count": 26
+        "count": 37,
+        "nd_count": 29
       },
       {
         "code": "GU",
         "name": "Guadalajara",
-        "count": 31,
-        "nd_count": 28
+        "count": 35,
+        "nd_count": 31
       },
       {
         "code": "S",
         "name": "Cantabria",
-        "count": 29,
-        "nd_count": 26
+        "count": 33,
+        "nd_count": 30
+      },
+      {
+        "code": "BA",
+        "name": "Badajoz",
+        "count": 27,
+        "nd_count": 20
+      },
+      {
+        "code": "CO",
+        "name": "Córdoba",
+        "count": 27,
+        "nd_count": 11
       },
       {
         "code": "H",
@@ -171,88 +183,76 @@
         "nd_count": 20
       },
       {
-        "code": "CO",
-        "name": "Córdoba",
-        "count": 25,
-        "nd_count": 9
-      },
-      {
         "code": "VI",
         "name": "Álava",
-        "count": 22,
-        "nd_count": 18
-      },
-      {
-        "code": "AL",
-        "name": "Almería",
-        "count": 21,
-        "nd_count": 20
+        "count": 25,
+        "nd_count": 21
       },
       {
         "code": "J",
         "name": "Jaén",
-        "count": 21,
-        "nd_count": 14
+        "count": 23,
+        "nd_count": 16
       },
       {
-        "code": "BA",
-        "name": "Badajoz",
-        "count": 20,
-        "nd_count": 17
+        "code": "AL",
+        "name": "Almería",
+        "count": 22,
+        "nd_count": 20
       },
       {
         "code": "LU",
         "name": "Lugo",
-        "count": 19,
-        "nd_count": 16
-      },
-      {
-        "code": "SA",
-        "name": "Salamanca",
-        "count": 15,
-        "nd_count": 13
-      },
-      {
-        "code": "LO",
-        "name": "La Rioja",
-        "count": 15,
-        "nd_count": 12
+        "count": 22,
+        "nd_count": 19
       },
       {
         "code": "BU",
         "name": "Burgos",
-        "count": 15,
-        "nd_count": 12
+        "count": 19,
+        "nd_count": 15
+      },
+      {
+        "code": "LO",
+        "name": "La Rioja",
+        "count": 17,
+        "nd_count": 13
+      },
+      {
+        "code": "SA",
+        "name": "Salamanca",
+        "count": 16,
+        "nd_count": 14
+      },
+      {
+        "code": "HU",
+        "name": "Huesca",
+        "count": 16,
+        "nd_count": 8
       },
       {
         "code": "OU",
         "name": "OU",
-        "count": 15,
-        "nd_count": 14
+        "count": 16,
+        "nd_count": 15
       },
       {
         "code": "AB",
         "name": "Albacete",
-        "count": 14,
-        "nd_count": 14
+        "count": 15,
+        "nd_count": 15
+      },
+      {
+        "code": "CR",
+        "name": "Ciudad Real",
+        "count": 15,
+        "nd_count": 10
       },
       {
         "code": "LE",
         "name": "León",
         "count": 14,
         "nd_count": 11
-      },
-      {
-        "code": "HU",
-        "name": "Huesca",
-        "count": 14,
-        "nd_count": 7
-      },
-      {
-        "code": "CR",
-        "name": "Ciudad Real",
-        "count": 14,
-        "nd_count": 10
       },
       {
         "code": "CU",
@@ -281,13 +281,19 @@
       {
         "code": "ZA",
         "name": "Zamora",
-        "count": 4,
+        "count": 5,
         "nd_count": 4
+      },
+      {
+        "code": "P",
+        "name": "Palencia",
+        "count": 5,
+        "nd_count": 3
       },
       {
         "code": "SO",
         "name": "Soria",
-        "count": 3,
+        "count": 4,
         "nd_count": 2
       },
       {
@@ -299,12 +305,6 @@
       {
         "code": "ML",
         "name": "ML",
-        "count": 2,
-        "nd_count": 2
-      },
-      {
-        "code": "P",
-        "name": "Palencia",
         "count": 2,
         "nd_count": 2
       },

@@ -1,114 +1,126 @@
 {
-  "updated": "2026-03-18",
+  "updated": "2026-03-19",
   "months": {
     "2026-03": [
       {
         "brand": "Tesla",
         "model": "Model 3",
-        "count": 967,
-        "nd_count": 826
+        "count": 1028,
+        "nd_count": 878
       },
       {
         "brand": "Tesla",
         "model": "Model Y",
-        "count": 367,
-        "nd_count": 288
+        "count": 418,
+        "nd_count": 331
       },
       {
         "brand": "BYD",
         "model": "Dolphin Surf",
-        "count": 206,
-        "nd_count": 189
+        "count": 229,
+        "nd_count": 211
       },
       {
         "brand": "BYD",
         "model": "Atto 2",
-        "count": 142,
-        "nd_count": 132
+        "count": 156,
+        "nd_count": 144
       },
       {
         "brand": "Kia",
         "model": "Ev3",
-        "count": 141,
-        "nd_count": 106
+        "count": 154,
+        "nd_count": 115
       },
       {
         "brand": "Renault",
         "model": "5 E-Tech Ele",
-        "count": 95,
-        "nd_count": 77
-      },
-      {
-        "brand": "BMW",
-        "model": "Ix3 50 Xdrive",
-        "count": 87,
-        "nd_count": 3
+        "count": 114,
+        "nd_count": 95
       },
       {
         "brand": "Mercedes-Benz",
         "model": "Eqa 250+",
-        "count": 84,
-        "nd_count": 46
+        "count": 91,
+        "nd_count": 49
       },
       {
         "brand": "Leapmotor",
         "model": "B10",
-        "count": 82,
-        "nd_count": 66
+        "count": 90,
+        "nd_count": 74
+      },
+      {
+        "brand": "BMW",
+        "model": "Ix3 50 Xdrive",
+        "count": 89,
+        "nd_count": 4
       },
       {
         "brand": "Citroën",
         "model": "Ë-C3 E",
-        "count": 81,
-        "nd_count": 56
-      },
-      {
-        "brand": "Mercedes-Benz",
-        "model": "Cla 250+",
-        "count": 76,
-        "nd_count": 37
+        "count": 87,
+        "nd_count": 62
       },
       {
         "brand": "Citroën",
         "model": "Ë-C3 A",
-        "count": 73,
-        "nd_count": 8
+        "count": 83,
+        "nd_count": 11
       },
       {
-        "brand": "Deepal",
-        "model": "S05",
-        "count": 67,
-        "nd_count": 65
+        "brand": "Mercedes-Benz",
+        "model": "Cla 250+",
+        "count": 83,
+        "nd_count": 40
       },
       {
         "brand": "BMW",
         "model": "Ix2 Edrive20",
-        "count": 67,
-        "nd_count": 22
+        "count": 76,
+        "nd_count": 24
+      },
+      {
+        "brand": "Deepal",
+        "model": "S05",
+        "count": 72,
+        "nd_count": 70
       },
       {
         "brand": "Toyota",
         "model": "Bz4X",
-        "count": 63,
-        "nd_count": 35
-      },
-      {
-        "brand": "Volvo",
-        "model": "Ex30",
-        "count": 58,
-        "nd_count": 47
-      },
-      {
-        "brand": "Xpeng",
-        "model": "G6",
-        "count": 56,
-        "nd_count": 51
+        "count": 68,
+        "nd_count": 38
       },
       {
         "brand": "Mazda",
         "model": "6E",
+        "count": 63,
+        "nd_count": 57
+      },
+      {
+        "brand": "Volvo",
+        "model": "Ex30",
+        "count": 60,
+        "nd_count": 49
+      },
+      {
+        "brand": "Xpeng",
+        "model": "G6",
+        "count": 59,
+        "nd_count": 53
+      },
+      {
+        "brand": "Opel",
+        "model": "Frontera Gs Electric",
+        "count": 57,
+        "nd_count": 7
+      },
+      {
+        "brand": "Omoda",
+        "model": "Omoda5 Ev",
         "count": 55,
-        "nd_count": 51
+        "nd_count": 54
       },
       {
         "brand": "Mini",
@@ -117,70 +129,58 @@
         "nd_count": 14
       },
       {
-        "brand": "Omoda",
-        "model": "Omoda5 Ev",
-        "count": 52,
-        "nd_count": 51
-      },
-      {
         "brand": "Hyundai",
         "model": "Inster",
-        "count": 47,
-        "nd_count": 32
-      },
-      {
-        "brand": "Opel",
-        "model": "Frontera Gs Electric",
-        "count": 44,
-        "nd_count": 7
+        "count": 52,
+        "nd_count": 37
       },
       {
         "brand": "Jeep",
         "model": "Avenger",
-        "count": 44,
-        "nd_count": 12
+        "count": 48,
+        "nd_count": 14
       },
       {
         "brand": "BYD",
         "model": "Sealion 7",
-        "count": 39,
-        "nd_count": 27
+        "count": 47,
+        "nd_count": 32
       },
       {
-        "brand": "Ford",
-        "model": "Capri",
-        "count": 36,
-        "nd_count": 5
-      },
-      {
-        "brand": "Mini",
-        "model": "Cooper Se",
-        "count": 36,
-        "nd_count": 12
-      },
-      {
-        "brand": "Citroën",
-        "model": "Ë-C4 Eléctrico",
-        "count": 36,
-        "nd_count": 6
-      },
-      {
-        "brand": "Polestar",
-        "model": "4",
-        "count": 35,
-        "nd_count": 29
-      },
-      {
-        "brand": "BYD",
-        "model": "Seal U",
-        "count": 34,
-        "nd_count": 30
+        "brand": "Toyota",
+        "model": "C-Hr",
+        "count": 46,
+        "nd_count": 21
       },
       {
         "brand": "Volkswagen",
         "model": "Id.4 Pro 210Kw",
-        "count": 34,
-        "nd_count": 11
+        "count": 41,
+        "nd_count": 15
+      },
+      {
+        "brand": "Polestar",
+        "model": "4",
+        "count": 40,
+        "nd_count": 31
+      },
+      {
+        "brand": "Mini",
+        "model": "Cooper Se",
+        "count": 39,
+        "nd_count": 14
+      },
+      {
+        "brand": "Ford",
+        "model": "Capri",
+        "count": 38,
+        "nd_count": 6
+      },
+      {
+        "brand": "Jaecoo",
+        "model": "Jaecoo5 Ev",
+        "count": 38,
+        "nd_count": 35
       }
     ],
     "2026-01": [
