@@ -1,64 +1,64 @@
 {
-  "updated": "2026-03-19",
+  "updated": "2026-03-20",
   "months": {
     "2026-03": {
-      "total": 55808,
-      "nd_total": 22815,
+      "total": 60370,
+      "nd_total": 24681,
       "types": [
         {
           "type": "Gasolina",
           "code": "Gasolina",
-          "count": 13396,
-          "pct": 24.0,
-          "nd_count": 4614,
-          "nd_pct": 20.2
+          "count": 14274,
+          "pct": 23.6,
+          "nd_count": 4972,
+          "nd_pct": 20.1
         },
         {
           "type": "Diésel",
           "code": "Diésel",
-          "count": 4454,
-          "pct": 8.0,
-          "nd_count": 1545,
+          "count": 4892,
+          "pct": 8.1,
+          "nd_count": 1666,
           "nd_pct": 6.8
         },
         {
           "type": "Híbrido (HEV/MHEV)",
           "code": "HEV",
-          "count": 6151,
-          "pct": 11.0,
-          "nd_count": 2592,
+          "count": 6710,
+          "pct": 11.1,
+          "nd_count": 2805,
           "nd_pct": 11.4
         },
         {
           "type": "Híbrido enchufable (PHEV)",
           "code": "PHEV",
-          "count": 26030,
-          "pct": 46.6,
-          "nd_count": 10616,
+          "count": 28090,
+          "pct": 46.5,
+          "nd_count": 11486,
           "nd_pct": 46.5
         },
         {
           "type": "Eléctrico (BEV)",
           "code": "BEV",
-          "count": 4991,
-          "pct": 8.9,
-          "nd_count": 3343,
-          "nd_pct": 14.7
+          "count": 5436,
+          "pct": 9.0,
+          "nd_count": 3644,
+          "nd_pct": 14.8
         },
         {
           "type": "GLP / GNC",
           "code": "Gas",
-          "count": 187,
+          "count": 191,
           "pct": 0.3,
-          "nd_count": 67,
+          "nd_count": 68,
           "nd_pct": 0.3
         },
         {
           "type": "Otros",
           "code": "Otros",
-          "count": 599,
-          "pct": 1.1,
-          "nd_count": 38,
+          "count": 777,
+          "pct": 1.3,
+          "nd_count": 40,
           "nd_pct": 0.2
         }
       ]
